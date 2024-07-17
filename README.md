@@ -62,4 +62,4 @@ Security Requirements:
 - Integrate security measures to protect the site against intrusions and abuse.
 
 CONCLUSION
-The project aims to establish a solid foundation for the development of the web interface of the NUMIKS space fablab, with an emphasis on accessibility, security, and ease of use for all users. This project is currently under development.
+The project aims to establish a solid foundation for the development of the web interface of the NUMIKS space fablab, with an emphasis on accessibility, security, and ease of use for all users. This project is currently under development. I contributed to the project by developing the functionality for a user to contact the fablab. I also developed profile management for an authenticated user.
