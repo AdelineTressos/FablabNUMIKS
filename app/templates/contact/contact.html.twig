@@ -1,0 +1,69 @@
+{% extends 'visitor/index.html.twig' %}
+{% block title %}
+	Contact
+{% endblock %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('assets/styles/contact.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block main %}
+<div class="justify-content-center" id="container_form_contact">
+	{{ form_start(form) }}
+	<div id="formContact">
+		<div class="container mt-3">
+			<h1 class="text-center text-uppercase" id="titleContact">Nous contacter</h1>
+		</div>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success mt-3">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<div class="row">
+			<div class="col mt-3">
+				<div>
+					{{ form_label(form.lastname) }}
+				</div>
+				{{ form_widget(form.lastname) }}
+			</div>
+			<div class="col mt-3">
+				<div>
+					{{ form_label(form.firstname) }}
+				</div>
+				{{ form_widget(form.firstname) }}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col mt-3">
+				<div>
+					{{ form_label(form.email) }}
+				</div>
+				{{ form_widget(form.email) }}
+			</div>
+			<div class="col mt-3">
+				<div>
+					{{ form_label(form.phone) }}
+				</div>
+				{{ form_widget(form.phone) }}
+			</div>
+		</div>
+		<div class="row" id="rowMessage">
+			<div class="col mt-3" id="colMessage">
+				<div>
+					{{ form_label(form.message) }}
+				</div>
+				{{ form_widget(form.message) }}
+			</div>
+		</div>
+		<p class="text-danger mt-3" id="champObligatoire">* Champs obligatoires</p>
+		<div class="mt-3">
+			{{ form_row(form.submit) }}
+		</div>
+	</div>
+
+	{{ form_end(form) }}
+</div>
+{% endblock %}

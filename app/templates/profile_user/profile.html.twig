@@ -1,0 +1,124 @@
+{% extends 'visitor/index.html.twig' %}
+
+{% block title %}Profil Adhérent{% endblock %}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('assets/styles/charter.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/styles/profile_member.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/styles/dimensionpage.css') }}">
+{% endblock %}
+{% block main %}
+
+<div class="background-image mb-5"></div>
+	<div class="container-fluid mt-3 mb-5">
+		<div class="row justify-content-center main-content ">
+			<div class="col-md-8">
+				<div class="card custom-card shadow">
+					<div class="card-header custom-card-header text-center">
+						<h1 class="h1 mt-2 h1-profile">Profil</h1>
+					</div>
+					<div class="card-body">
+						<div class="mb-2 table-responsive">
+                            <table class="table table-striped table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th>Numéro d'adhérent</th>
+                                        <td>{{ user.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <td>{{ user.lastname }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Prénom</th>
+                                        <td>{{ user.firstname }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date de naissance</th>
+                                        <td>{{ user.birthday|date('d-m-Y') }}</td>
+                                    </tr>
+                                    {% if user.nameOrganization != null %}
+                                    <tr>
+                                        <th>Nom de l'entreprise ou de l'association</th>                
+                                            <td>{{ user.nameOrganization}}</td>               
+                                    </tr>
+                                        {% if user.num_siret != null %}
+                                            <tr>
+                                                <th>Numéro de SIRET</th>                
+                                                    <td>{{ user.num_siret}}</td>               
+                                            </tr>
+                                        {% endif %}
+                                    {% endif %}
+                                    <tr>
+                                        <th>Adresse mail</th>
+                                        <td>{{ user.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mot de passe</th>
+                                        <td>{% for i in 0..7 %}
+                                            *
+                                        {% endfor %}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Téléphone</th>
+                                        {% if user.phone != null %}
+                                            <td>{{ user.phone }}</td>
+                                        {% else %}
+                                            <td>Non renseigné</td>
+                                        {% endif %}
+                                    </tr>
+                                    <tr>
+                                        <th>Adresse</th>
+                                        <td>{{ user.street }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <th>Complément d'adresse</th>
+                                        <td>{{ user.adressComplement }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Code Postal</th>
+                                        <td>{{ user.postalcode }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ville</th>
+                                        <td>{{ user.city }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Date de première adhésion</th>
+                                        {% if user.firstMembership != null %}
+                                            <td>{{ user.firstMembership|date('d-m-Y') }}</td>
+                                        {% else %}
+                                            <td>Non renseigné</td>
+                                        {% endif %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+					</div>
+                    <div class="container text-center mb-3">
+                        <button class="btn btn-custom"><a class="a-profile" href="{{ path('app_users_edit', {'id': user.id}) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                            </svg>Modifier mes coordonnées</a>
+                        </button>
+                        <button class="btn btn-custom"><a class="a-profile" href="{{ path('app_users_edit_password', {'id': user.id}) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+                            <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                            </svg>Changer de mot de passe</a>
+                        </button>
+
+                        {{ include('/profile_user/_delete_form.html.twig') }}
+                    </div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+    <div style="height: 7rem"></div>
+    
+{% endblock %}

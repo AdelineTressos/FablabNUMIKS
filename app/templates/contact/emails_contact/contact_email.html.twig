@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Demande de {{ contact.firstname }} {{ contact.lastname }}</h1>
+        
+        <p>Email : {{ contact.email }}</p>
+        
+        {% if contact.phone != null %}
+            <p> Téléphone : {{ contact.phone }}.</p>
+        {% else %}
+            <p> Téléphone : Non renseigné.</p>
+        {% endif %}
+        
+        <p>Sujet : Demande de contact</p>
+        
+        <p> Message : 
+         {{ contact.message|raw }}
+        </p>
+    </body>
+</html>

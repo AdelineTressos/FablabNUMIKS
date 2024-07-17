@@ -1,0 +1,26 @@
+{% extends 'visitor/index.html.twig' %}
+
+{% block title %}Modifier un profil{% endblock %}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('assets/styles/charter.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/styles/profile_member.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/styles/dimensionpage.css') }}">
+{% endblock %}
+
+{% block main %}
+<div class="background-image"></div>
+	<div class="container-fluid mt-3 mb-3">
+		<div class="row justify-content-center main-content ">
+			<div class="col-md-8">
+				<div class="card custom-card shadow">
+					<div class="card-header custom-card-header text-center">
+						<h1 class="h1 mt-2 h1-profile">Modifier son profil</h1>
+					</div>
+
+                    {{ include('/profile_user/_form_profile_user.html.twig') }}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
