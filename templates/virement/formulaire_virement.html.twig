@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de bord - Mes Comptes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    body {
+        padding-top: 56px; /* Pour compenser la hauteur de la barre de navigation fixe */
+        background-image: url("{{asset('./images/fond5.png')}}");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center; 
+        background-size: cover;
+        width: 95%;
+        margin-left: 2em;
+    }
+    .jumbotron {
+        text-align: center;
+        margin-top: 50px;
+        height: 35%;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #f5f5f5;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        margin-left: -2em;
+    }
+    .nav-item{
+        text-align: center;
+    }
+    .titrePrincipal{
+        height: 2em;
+    }
+
+    .imgPoule{
+    width: 150px;
+    height: auto;
+}
+
+#compteSourceId, #compteDestinationId{
+    margin-bottom: 1em;
+}
+    </style>
+</head>
+<body>
+<header>
+    <!-- Barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <img src="{{ asset('./images/logoKOKOTBANK.png') }}" alt="logo kokotbank" class="imgPoule" />
+        <a class="navbar-brand" href="#">
+        Votre Banque est là pour vous</a>
+        <!-- Liens de navigation -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('dashboard_accounts') }}">Mes Comptes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('afficher_formulaire_virement') }}">Effectuer un Virement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+{# TRANSACTION BANCAIRE #}
+<!-- Formulaire de virement -->
+<form action="{{ path('effectuer_virement') }}" method="post" class="jumbotron">
+    <label for="compteSourceId">Votre Compte :</label>
+    <select name="compteSourceId" id="compteSourceId">
+        {% for compte in comptesUtilisateur %}
+            <option value="{{ compte.getId() }}">{{ app.user.NomComplet }} - {{ compte.getNumeroCompte() }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="compteDestinationId">Compte bénéficiaire :</label>
+    <select name="compteDestinationId" id="compteDestinationId">
+        {% for userId, nomUtilisateur in nomsUtilisateurs %}
+            {% if app.user.id != userId %}
+                <option value="{{ userId }}">{{ nomUtilisateur }}</option>
+            {% endif %}
+        {% endfor %}
+    </select><br>
+    <label for="montant">Montant :</label>
+    <input type="number" name="montant" id="montant" value="0.00" required>
+    <button type="submit">Effectuer le virement</button>
+</form>
+<!-- Pied de page -->
+<footer class="footer">
+    
+    <div class="container">
+        <span class="text-muted">KokotBank &copy; 2023</span>
+    </div>
+</footer>
+</body>
+</html>

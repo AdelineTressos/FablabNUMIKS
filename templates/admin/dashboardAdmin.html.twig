@@ -1,0 +1,30 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block content_title %}
+<div>
+{% if app.user %}
+            <h1>Bienvenue {{ app.user.genre }} {{ app.user.prenom }} {{ app.user.nom }},</h1>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Bienvenue sur le tableau de bord administratif !
+                </div>
+                <div class="card-body">                  
+                    
+                    {% if app.user.lastConnexion %}
+                        <p>Dernière connexion le {{ app.user.lastConnexion|date('d/m/Y H:i:s') }}</p>
+                    {% else %}
+                        <p>Première connexion</p>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
