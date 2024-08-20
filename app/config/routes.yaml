@@ -1,0 +1,8 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+flash_messages:
+    path: /flash-messages
+    controller: App\Controller\VisitorEventsController::showFlashSpecial

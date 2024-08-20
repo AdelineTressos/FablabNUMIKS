@@ -1,0 +1,22 @@
+parameters:
+    app.jwtsecret: '%env(JWT_SCRET)%'
+    targetDirectory: '%kernel.project_dir%/public/assets/uploads'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    Intervention\Image\ImageManagerStatic:
+        public: true
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%targetDirectory%'
+    # Si nécessaire, déclarez explicitement votre service ici sans l'exclure
+    # App\Form\DataTransformer\PostalCodeToNumberTransformer: ~
+    # App\Form\DataTransformer\CityToNameTransformer: ~
