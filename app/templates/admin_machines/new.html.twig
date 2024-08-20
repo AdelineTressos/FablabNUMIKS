@@ -1,0 +1,46 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+
+{% block title %}Ajouter une nouvelle machine{% endblock %}
+
+{% block main %}
+<div class="container mt-5 animate__animated animate__fadeInLeftBig">
+    <h1>Ajouter une nouvelle machine</h1>
+    <div class="mt-4">
+        {{ form_start(form) }}
+            <div class="mb-3">
+                {{ form_label(form.name_machine, 'Nom de la machine', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.name_machine, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.name_machine) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.number_machine, 'Nombre de machine', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.number_machine, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.number_machine) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.description) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.machine_picture, 'Image de la machine', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.machine_picture, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(form.machine_picture) }}
+            </div>
+            <div class="mb-3 form-check">
+                {{ form_widget(form.member_access) }}
+                {{ form_label(form.member_access, 'Accès au membre', {'label_attr': {'class': 'form-check-label'}}) }}
+                {{ form_errors(form.member_access) }}
+            </div>
+            <div class="mb-3 form-check">
+                {{ form_widget(form.is_booked) }}
+                {{ form_label(form.is_booked, 'Réserver', {'label_attr': {'class': 'form-check-label'}}) }}
+                {{ form_errors(form.is_booked) }}
+            </div>
+            <button type="submit" class="btn btn-primary">Valider</button>
+            <a href="{{ path('app_admin_machines') }}" class="btn btn-primary">Retour à la liste</a>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

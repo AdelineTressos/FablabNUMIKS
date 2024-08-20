@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Validation de votre réservation</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f9f9f9;
+				color: #333;
+			}
+			.container {
+				background-color: #ffffff;
+				padding: 20px;
+				margin: 20px auto;
+				width: 90%;
+				max-width: 600px;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+			h1,
+			h2 {
+				color: #6d3e91;
+			}
+			a,
+			a:visited {
+				color: #f28705;
+			}
+			p {
+				color: #6d3e91;
+			}
+			.footer {
+				margin-top: 20px;
+				font-size: 0.9em;
+				text-align: center;
+				color: #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Annulation de votre réservation</h1>
+			<p>Bonjour
+				{{ reservation.user.firstname }},</p>
+
+			<p>Nous vous informons que votre réservation du
+				{{ reservation.dateReservation|date('Y-m-d') }}
+				de
+				{{ reservation.startHour|date('H:i') }}
+				à
+				{{ reservation.endHour|date('H:i') }}
+				a été annulée ou refusée.</p>
+			<p>
+				{% if reservation.machine.nameMachine is defined %}
+					Machine :
+					{{ reservation.machine.nameMachine }}
+				{% else %}
+					Poles :
+					{{ reservation.workspace.nameWorkspace }}
+				{% endif %}
+			</p>
+			<p>Merci de votre compréhension.</p>
+
+			<p>Cordialement,<br>L'équipe de votre FabLab</p>
+		</div>
+	</body>
+</html>

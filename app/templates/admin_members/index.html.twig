@@ -1,0 +1,20 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Adhésions{% endblock %}
+
+{% block main %}
+<h1>Gestion des adhésions</h1>
+{% include 'components/_flash.html.twig' %}
+<div class=" d-flex justify-content-end">
+    <a role="button" class="btn btn-secondary"
+        href="{{ path('app_admin_new') }}">Créer un nouvelle adhésion</a>
+</div>
+<section>
+    <h2>Adhésions en attente de validation</h2>
+    {% include 'admin_members/allMembersNonValidated.html.twig' with {'nonValidatedUsers': nonValidatedUsers} %}
+</section>
+<section>
+    <h2>Adhésions validées</h2>
+    {% include 'admin_members/allMembersValidated.html.twig' with {'validatedUsers': validatedUsers} %}
+<section>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+
+{% block title %}Evènements{% endblock %}
+
+{% block main %}
+<h1>gestion des évènements</h1>
+
+{% include 'components/_flash.html.twig' %}
+
+<div class=" d-flex justify-content-end">
+    <a role="button" class="btn btn-secondary"
+        href="{{ path('app_admin_event_new') }}">Créer un nouvel évènement</a>
+</div>
+
+{% include 'admin_event/publishedEvents.html.twig' with {'publishedEvents' : publishedEvents } %}
+
+
+{% endblock %}

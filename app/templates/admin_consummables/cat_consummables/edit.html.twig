@@ -1,0 +1,30 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Modifier Consummables{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/styles/categorieAdmin.css') }}">
+{% endblock %}
+
+{% block main %}
+<a role="button" class="btn btn-outline-primary btn-sm" href="{{ path('app_cat_consummables_index') }}" style="border-radius:10%;">
+    < Retour </a>
+    
+    <div class="container-fluid mt-5">
+        <h1 class="text-center">Modifier Consummables</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                {{ include('/admin_consummables/cat_consummables/_form.html.twig', {'button_label': 'Modifier'}) }}
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-12">
+                {{ include('/admin_consummables/cat_consummables/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

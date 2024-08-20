@@ -1,0 +1,74 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Adhésions{% endblock %}
+
+{% block main %}
+<a role="button" class="btn btn-outline-primary btn-sm" href="{{ path('app_admin_members') }}" style="border-radius:10%;">
+    < Retour </a>
+    
+<h1>Modifier l'adhésion</h1>
+
+        {% form_theme memberForm 'bootstrap_5_layout.html.twig' %}
+        {{ form_start(memberForm) }}
+        <div class="row justify-content-between ">
+            <div class="col-md-2">
+                {{ form_row(memberForm.gender) }}
+            </div>
+            <div class="col-md-5">
+                {{ form_row(memberForm.firstname) }}
+            </div>
+            <div class="col-md-5">
+                {{ form_row(memberForm.lastname) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(memberForm.birthday) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(memberForm.phone) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(memberForm.email) }}
+            </div>
+            <div class="row align-items-center border border-2 rounded ms-0.5">
+                <div class="col-md-6">
+                    {{ form_row(memberForm.username) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(memberForm.first_membership) }}
+                </div>
+                <div class="col-md-6" style="font-weight: bold;">
+                    {{ form_row(memberForm.is_validated) }}
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(memberForm.last_membership) }}
+                </div>
+            </div>
+            <div class="col-md-12">
+                {{ form_row(memberForm.street) }}
+            </div>
+            <div class="col-md-12">
+                {{ form_row(memberForm.adress_complement) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(memberForm.city) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(memberForm.postalcode) }}
+            </div>
+            <div class="row align-items-center border border-2 rounded ms-0.5">
+                <div class="col-md-2" style="font-weight: bold;">
+                    {{ form_row(memberForm.is_organization) }}
+                </div>
+                <div class="col-md-5">
+                    {{ form_row(memberForm.name_organization) }}
+                </div>
+                <div class="col-md-5">
+                    {{ form_row(memberForm.num_siret) }}
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3 me-3">
+            <button type="submit" class="btn btn-outline-primary">Sauvegarder</button>
+            {{ form_end(memberForm) }}
+
+            {% endblock %}

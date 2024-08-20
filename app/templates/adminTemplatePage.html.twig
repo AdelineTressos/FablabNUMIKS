@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('assets/styles/sideBarLeft.css') }}">
+	<link
+	rel="stylesheet" href="{{ asset('assets/styles/adminPages.css') }}">
+	<!-- Inclure le CSS de DataTables -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+{% endblock %}
+
+{% block body %}
+	{% block header %}
+		<div class="wrapper">
+			<aside id="sidebar" class="expand">
+				<div class="d-flex">
+					<div class="border-bottomm">
+						<img src="{{ asset('assets/images/logoFablabNavbar.svg') }}" alt="Logo FabLab">
+					</div>
+				</div>
+				<ul class="sidebar-nav">
+					<li class="sidebar-item">
+						<a href="{{ path('admin_dashboard') }}" class="sidebar-link">
+							<ion-icon name="home-outline" class="nav__icon"></ion-icon>
+							<span>ACCUEIL</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="{{ path('app_admin_members') }}" class="sidebar-link">
+							<ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+							<span>ADHÉSIONS</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="{{path('app_admin_reservations_dashboard')}}" class="sidebar-link">
+							<ion-icon name="chevron-down-outline" class="nav__icon"></ion-icon>
+							<span>RÉSERVATIONS</span>
+						</a>
+						<div class="submenu dropdown-content">
+							<a href="{{ path('app_admin_reservations_machine') }}" class="sidebar-link">Machine</a>
+							<a href="{{ path('app_admin_reservations_workspace') }}" class="sidebar-link">Espace Pôles</a>
+						</div>
+					</li>
+					<li class="sidebar-item">
+						<a href="{{ path('app_admin_event') }}" class="sidebar-link">
+							<ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+							<span>ÉVENEMENTS</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="{{ path('app_admin_articles_index') }}" class="sidebar-link">
+							<ion-icon name="newspaper-outline" class="nav__icon"></ion-icon>
+							<span>ARTICLES</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a href="{{ path('app_admin_equipements') }}" class="sidebar-link">
+							<ion-icon name="build-outline" class="nav__icon"></ion-icon>
+							<span>ÉQUIPEMENTS</span>
+						</a>
+						<div class="submenu dropdown-content">
+							<a href="{{ path('app_admin_machines') }}" class="sidebar-link">Machines</a>
+							<a href="{{ path('app_admin_workspaces') }}" class="sidebar-link">Espace de travail</a>
+						</div>
+					</li>
+					<li class="sidebar-item">
+						<a href="{{ path('app_admin_consummables_index') }}" class="sidebar-link">
+							<ion-icon name="chevron-down-outline" class="nav__icon"></ion-icon>
+							<span>CONSOMMABLES</span>
+						</a>
+						<div class="submenu dropdown-content">
+							<a href="{{ path('app_cat_consummables_index') }}" class="sidebar-link">Catégories</a>
+							<a href="{{ path('app_units_consummable_index') }}" class="sidebar-link">Unités Consommables</a>
+						</div>
+					</li>
+
+
+				</ul>
+				<div class="sidebar-footer border-topp">
+					<a href="{{ path('app_logout') }}" class="sidebar-link">
+						<ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+						<span>DÉCONNEXION</span>
+					</a>
+				</div>
+			</aside>
+		{% endblock %}
+		<div class="main p-3">
+			{% block main %}{% endblock %}
+		</div>
+	</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+{{parent()}}
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+<!-- Bootstrap Bundle (inclut Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<!-- Icônes Ionicons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!-- Votre script JS personnalisé -->
+<script src="{{ asset('assets/javascript/sideBarLeft.js') }}"></script>
+=======
+=======
+>>>>>>> f6f560352e6ec98a43eb751385cfdc9cbd121849
+	{{parent()}}
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<!-- DataTables -->
+	<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+	<!-- Bootstrap Bundle (inclut Popper) -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+	<!-- Icônes Ionicons -->
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	<!-- Votre script JS personnalisé -->
+	<script src="{{ asset('assets/javascript/sideBarLeft.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,25 @@
+<div class="row justify-content-center">
+{% for publishedEvent in publishedEvents %}
+{% if publishedEvent.endDate >= "now"|date("d-m-Y") %}
+
+    <div class="card col-3 m-1 text-center">
+        <img src={{ publishedEvent.frontMedia }}" class="card-img-top" alt="illustration de l'évènement">
+        <div class="card-body">
+            <h3>{{ publishedEvent.nameEvent }}</h3>
+                <h4><ion-icon name="calendar"></ion-icon> {{ publishedEvent.startDate|date('d-m-Y') }} 
+                    {% if publishedEvent.startDate != publishedEvent.endDate %}
+                     au {{ publishedEvent.endDate|date('d-m-Y') }}
+                    {% endif %}
+                </h4>
+                <h5><ion-icon name="time"></ion-icon> {{ publishedEvent.startHour|date('H:i') }} - {{ publishedEvent.endHour|date('H:i') }}</h5>
+            {# <p class="card-text"><ion-icon name="person-add"></ion-icon> : à implémenter  </p> #}
+            <a role="button" class="btn btn-outline-primary" href="{{ path('app_admin_event_show', {'id': publishedEvent.id}) }}">voir</a>
+        </div>
+    </div>
+
+{% endif %}
+{% endfor %}
+
+{% block scripts %}
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+{% endblock %}

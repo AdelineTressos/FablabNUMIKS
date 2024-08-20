@@ -1,0 +1,211 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('assets/styles/articlesAdmin.css') }}">
+
+{% endblock %}
+
+{% block title %}Tableau de bord Administrateur{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+        <h1 class="mb-5">Tableau de bord Administrateur</h1>
+
+        <div class="row mb-4">
+            <div class="col-lg-6">
+                <div class="card mb-3">
+                    <div class="card-header">Statistiques Générales</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Total Adhérents: {{ totalMembers }}</h5>
+                        <h5 class="card-title">Total Réservations: {{ totalReservations }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">Statistiques des Machines</div>
+                    <div class="card-body">
+                        {% if machineUsageStats is not empty %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Machine</th>
+                                    <th>Nombre de Réservations</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for stat in machineUsageStats %}
+                                    <tr>
+                                        <td>{{ stat.machineName }}</td>
+                                        <td>{{ stat.reservationCount }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <p>Aucune donnée d'utilisation des machines disponible.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mb-2">
+            <div class="col-lg-6">
+                <div class="card mb-3">
+                    <div class="card-header">Demande d'adhésion</div>
+                    <div class="card-body">
+                        {% if pendingMemberships is not empty %}
+                            <ul class="list-group">
+                                {% for member in pendingMemberships %}
+                                    <li class="list-group-item">
+                                        {{ member.lastname }} {{ member.firstname }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Aucune nouvelle adhésion récente.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card mb-3">
+                    <div class="card-header">Fin d'adhésion</div>
+                    <div class="card-body">
+                        {% if endingMembership is not empty %}
+                            <ul class="list-group">
+                                {% for member in endingMembership %}
+                                    <li class="list-group-item">
+                                        {{ member.lastname }} {{ member.firstname }} - {{ member.lastMembership|date('Y-m-d')}}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Aucune adhésion en fin de période.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">Réservations en Attente de Validation</div>
+                    <div class="card-body">
+                        {% if pendingValidations is not empty %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Workspace</th>
+                                    <th>Machine</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for reservation in pendingValidations %}
+                                    <tr>
+                                        <td>{{ reservation.eventName }}</td>
+                                        <td>{{ reservation.workspaceName }}</td>
+                                        <td>{{ reservation.machineName }}</td>
+                                        <td>{{ reservation.startDate|date('Y-m-d') }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <p>Aucune réservation en attente de validation.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row mb-4">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">Réservations à Venir</div>
+                    <div class="card-body">
+                        {% if upcomingReservations is not empty %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Workspace</th>
+                                    <th>Machine</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for reservation in upcomingReservations %}
+                                    <tr>
+                                        <td>{{ reservation.eventName }}</td>
+                                        <td>{{ reservation.workspaceName}}</td>
+                                        <td>{{ reservation.machineName }}</td>
+                                        <td>{{ reservation.startDate|date('Y-m-d') }}</td>
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <p>Aucune réservation en attente de validation.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="card mb-4">
+            <div class="card-header">Consommables au Seuil de Stock</div>
+            <div class="card-body">
+                {% if consumablesAtThreshold is not empty %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Quantité</th>
+                            <th>Seuil</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for consumable in consumablesAtThreshold %}
+                            <tr>
+                                <td>{{ consumable.nameConsummable }}</td>
+                                <td>{{ consumable.quantity }}</td>
+                                <td>{{ consumable.threshold }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>Aucun consommable n'atteint le seuil de stock.</p>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/javascript/articlesAdmin.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Créer un nouvel Espace de Travail{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style>
+    /* Style personnalisé pour augmenter l'espacement sous les cases à cocher */
+    .form-check {
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="container mt-5 animate__animated animate__fadeInLeftBig">
+    <h1>Créer un nouvel Espace de Travail</h1>
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+    <div class="mb-3">
+        {{ form_label(form.name_workspace) }}
+        {{ form_widget(form.name_workspace, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.name_workspace) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.description) }}
+    </div>
+    <div class="mb-3 form-check">
+        {{ form_widget(form.member_access, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(form.member_access) }}
+        {{ form_errors(form.member_access) }}
+    </div>
+    <div class="mb-3 form-check">
+        {{ form_widget(form.is_booked, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(form.is_booked) }}
+        {{ form_errors(form.is_booked) }}
+    </div>
+    <button type="submit" class="btn btn-primary">Créer</button>
+    <a href="{{ path('app_admin_workspaces') }}" class="btn btn-secondary">Retour à la liste</a>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'visitor/index.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/styles/visitorEventOne.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}Events{% endblock %}
+
+{% block main %}
+<section class="light">
+    <div class="container py-2">
+        <div class="h1 text-center text-dark" id="pageHeaderTitle">{{ event.nameEvent }}</div>
+        <article class="postcard red">
+            <a class="postcard__img_link" href="#">
+                <img class="postcard__img" src="{{ event.frontMedia }}" alt="Image Title" />
+            </a>
+            <div class="postcard__text t-dark">
+                <h2 class="postcard__title red"><a href="#">Détails de l'événement</a></h2>
+                <div class="postcard__subtitle small">
+                    <time datetime="2020-05-25 12:00:00">
+                        <i class="fas fa-calendar-alt mr-2"></i> {{ event.startDate ? event.startDate|date('d-M-Y') : '' }} jusqu'au {{ event.endDate ? event.endDate|date('d-M-Y') : '' }}
+                    </time><br>
+                    <time class="tag__item"><i class="fas fa-clock mr-2"></i> A partir de {{ event.startHour ? event.startHour|date('H:i') : '' }}</time>
+                </div>
+                <div class="postcard__bar"></div>
+                <div class="postcard__preview-txt">{{ event.description }}</div>
+                <ul class="postcard__tagbox">
+                    {% if app.user %}
+                        <button id="reserve-button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#areyousureModal">Réserver</button>
+                    {% else %}
+                        <button id="reserve-button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#membershipModal">Réserver</button>
+                    {% endif %}
+                </ul>
+            </div>
+        </article>
+    </div>
+</section>
+
+<a class="events-list" href="{{ path('app_visitor_events') }}" >Liste des événements</a>
+
+<div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="membershipModalLabel">Etes-vous membre ?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button id="yes" class="btn btn-primary">Je suis membre</button>
+                <button id="no" class="btn btn-danger">Je ne suis pas membre</button>
+            </div>
+        </div>
+    </div>
+</div><br>
+
+<div class="modal fade" id="areyousureModal" tabindex="-1" aria-labelledby="areyousureModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="areyousureModalLabel" style="color: red;">Confirmez-vous l'inscription</h5>
+                <button type="button" id="close-modal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button id="sure" class="btn btn-primary">Oui</button>
+                <button id="nono" class="btn btn-danger">Non</button>
+            </div>
+        </div>
+    </div>
+</div><br>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var yesButton = document.getElementById('yes');
+        var noButton = document.getElementById('no');
+
+        yesButton.addEventListener('click', function () {
+            window.location.href = '{{ path('app_login') }}';
+        });
+
+        noButton.addEventListener('click', function () {
+            window.location.href = '{{ path('event.book', {'id': event.id}) }}';
+        });
+
+        var membershipModal = new bootstrap.Modal(document.getElementById('membershipModal'));
+
+        document.getElementById('reserve-button').addEventListener('click', function () {
+            membershipModal.show();
+        });
+
+        var sureButton = document.getElementById('sure');
+        var nonoButton = document.getElementById('nono');
+        var closemodalButton = document.getElementById('close-modal');
+
+        sureButton.addEventListener('click', function () {
+            window.location.href = '{{ path('user.event.book', {'id': event.id}) }}';
+        });
+
+        closemodalButton.addEventListener('click', function () {
+            window.location.href = '{{ path('event.show', {'id': event.id}) }}';
+        });
+
+        nonoButton.addEventListener('click', function () {
+            window.location.href = '{{ path('event.show', {'id': event.id}) }}';
+        });
+
+        var areyousureModal = new bootstrap.Modal(document.getElementById('areyousureModal'));
+        document.getElementById('sure').addEventListener('click', function () {
+            areyousureModal.show();
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{# Permet de créer des messages d'alert dans les controllers qui pourront être boulcer et afficher #}
+
+{% for label, messages in app.flashes %}
+	{% for message in messages %}
+		<div class="alert alert-{{ label }} text-center alert-dismissible" role="alert">
+			<button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="class"></button>
+			<div class="alert-message">
+                {{ message|raw }}    
+            </div>
+		</div>
+	{% endfor %}
+{% endfor %}

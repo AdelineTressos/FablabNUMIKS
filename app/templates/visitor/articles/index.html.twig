@@ -1,0 +1,55 @@
+{% extends 'visitor/index.html.twig' %}
+
+{% block title %}Articles FabLab
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('assets/styles/articlesVisitor.css') }}">
+{% endblock %}
+
+{% block main %}
+	<div class="container-fluid my-5">
+		<div class="text-center">
+			<h1 class="mb-4">Articles FabLab</h1>
+		</div>
+		{% for publication in publications %}
+			{% if publication.isPublished %}
+				<div class="row justify-content-center mb-5 ">
+					<div class="col-10">
+						<div class="article-container shadow-sm p-3 mb-5 bg-white rounded">
+							<div class="text-center">
+								<h2 class="article-title">{{ publication.title }}</h2>
+							</div>
+							<div class="text-center">
+								{% if publication.frontPicture %}
+									<img class="article-image img-fluid" src="{{ asset('assets/uploads/' ~ publication.frontPicture) }}" alt="Image for {{ publication.title }}">
+								{% endif %}
+								{% if publication.media %}
+									{% set embedUrl = publication.media|replace({'https://www.youtube.com/watch?v=': 'https://www.youtube-nocookie.com/embed/'}) %}
+									<div class="video-wrapper">
+										<iframe class="article-video" src="{{ embedUrl }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									</div>
+								{% endif %}
+
+							</div>
+							<div class="article-date mt-2">
+								Publié le:
+								{{ publication.datePublication|date('d/m/Y') }}
+							</div>
+							<div class="article-content mt-3">
+								{{ publication.description|raw }}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		{% else %}
+			<div class="row">
+				<div class="col">
+					<p>Aucune publication validée pour le moment.</p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

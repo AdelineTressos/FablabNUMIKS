@@ -1,0 +1,60 @@
+{{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': ''}}) }}
+
+
+<div class="mb-3">
+	{{ form_label(form.title, 'Titre', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+	{{ form_errors(form.title) }}
+</div>
+
+
+<div class="mb-3">
+	{{ form_label(form.front_picture_file, 'Image de couverture', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.front_picture_file, {'attr': {'class': 'form-control'}}) }}
+	{{ form_errors(form.front_picture_file) }}
+</div>
+
+<div class="mb-3">
+	{{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+	{{ form_errors(form.description) }}
+</div>
+
+<div class="mb-3">
+	{{ form_label(form.media, 'Media (URL)', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.media, {'attr': {'class': 'form-control'}}) }}
+	{{ form_errors(form.media) }}
+</div>
+
+<div class="mb-3">
+	{{ form_label(form.date_publication, 'Date de publication', {'label_attr': {'class': 'form-label'}}) }}
+	{{ form_widget(form.date_publication, {'attr': {'class': 'form-control', 'placeholder': 'YYYY-MM-DD', 'required': 'required'}}) }}
+	{{ form_errors(form.date_publication) }}
+</div>
+
+<div class="mb-3">
+	{{ form_label(form.user, 'Nom de l\'auteur', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.user) }}
+</div>
+
+
+
+
+
+
+
+
+
+<div class="mb-3">
+    {{ form_label(form.is_published, 'Publié ?', {'label_attr': {'class': 'form-label'}}) }}
+    <div class="form-check">
+        {{ form_widget(form.is_published, {'attr': {'class': 'form-check-input'}}) }}
+        {{ form_label(form.is_published, 'Oui', {'label_attr': {'class': 'form-check-label'}}) }}
+        {{ form_errors(form.is_published) }}
+    </div>
+</div>
+
+<button type="submit" class="btn btn-success">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}

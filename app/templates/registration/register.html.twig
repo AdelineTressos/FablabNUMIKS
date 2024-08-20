@@ -1,0 +1,68 @@
+{% extends 'visitor/index.html.twig' %}
+
+{% block title %}ADHESION
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('assets/styles/register.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/styles/dimensionpage.css') }}">
+{% endblock %}
+
+{% block main %}
+	<div class="background-image"></div>
+	<div class="container-fluid mt-5 mb-3">
+		<div class="row justify-content-center main-content ">
+			<div class="col-md-8">
+				<div class="card custom-card shadow">
+					<div class="card-header custom-card-header">
+						<h1>Bienvenue pour l'inscription</h1>
+						{% for child in registrationForm.children %}
+							{% if child.vars.errors %}
+								<div class="custom-error-class">
+									{% for error in child.vars.errors %}
+										<div class="color-error-fab">{{ error.message }}</div>
+									{% endfor %}
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+					<div class="card-body">
+						{{ form_start(registrationForm, {'attr': {'class': 'form-horizontal'}}) }}
+						<div class="mb-3">
+							{{ form_label(registrationForm.username) }}
+							{{ form_widget(registrationForm.username, {'attr': {'class': 'form-control', 'placeholder': 'Exemple : Nom'}}) }}
+							{{ form_label(registrationForm.Password) }}
+							{{ form_widget(registrationForm.Password, { label: 'Mot de passe', 'placeholder': 'Exemple : ExeMple!6232' }) }}
+							{{ form_row(registrationForm.lastname) }}
+							{{ form_row(registrationForm.firstname) }}
+							{{ form_row(registrationForm.gender) }}
+							{{ form_label(registrationForm.email) }}
+							{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'placeholder': 'Exemple : exemple@hotmail.fr'}}) }}
+							{{ form_row(registrationForm.birthday) }}
+							{{ form_row(registrationForm.phone) }}
+							{{ form_row(registrationForm.city) }}
+							{{ form_row(registrationForm.postalcode) }}
+							{{ form_row(registrationForm.street) }}
+							{{ form_row(registrationForm.adress_complement) }}
+							{{ form_row(registrationForm.is_organization) }}
+							{{ form_label(registrationForm.num_siret) }}
+							{{ form_widget(registrationForm.num_siret, {'attr': {'class': 'form-control', 'placeholder': 'Exemple : 12345678901234'}}) }}
+
+
+							{{ form_row(registrationForm.name_organization) }}
+							{{ form_row(registrationForm.agreeTerms) }}
+						</div>
+						<div class="form-group d-flex align-items-center justify-content-between">
+							<button type="submit" class="btn btn-custom">Valider le formulaire d'inscription</button>
+							<p class="mb-0">Déjà inscrit ?
+								<a href="{{ path('app_login') }}">Connexion</a>
+							</p>
+						</div>
+						{{ form_end(registrationForm) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

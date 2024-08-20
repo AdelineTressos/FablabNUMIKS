@@ -1,0 +1,144 @@
+{% extends 'adminTemplatePage.html.twig' %}
+{% block title %}Evènements{% endblock %}
+
+{% block main %}
+
+<a href="{{ path('app_admin_event') }}">
+    < Retour</a>
+
+        <div class="card">
+            <h1 class="card-title"> {{ event.nameEvent }} </h1>
+            <img src=" {{ event.frontMedia }} " class="card-img-top m-2" style="max-height: 15rem; object-fit: contain;"
+                alt="...">
+            <div class="card-body">
+                <h2><ion-icon name="calendar"></ion-icon> {{ event.startDate|date('d-m-Y')}}
+                    {% if event.startDate != event.endDate %}
+                    au {{ event.endDate|date('d-m-Y') }}
+                    {% endif %}
+                </h2>
+                <h3><ion-icon name="time"></ion-icon> {{ event.startHour|date('H:i') }} - {{ event.endHour|date('H:i')
+                    }}</h3>
+                <p class="card-text" style="text-align: justify;"> {{ event.description }} </p>
+                <div class="row justify-content-between text-center">
+                    <div class="col">
+                        <p>Max participants : {{ event.maxParticipants }} </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            {% if event.isMemberOnly %}
+                            Evènement réservé aux membres
+                            {% else %}
+                            Evènement ouvert au public
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a role="button" class="btn btn-outline-primary"
+                        href="{{ path('app_admin_event_show', {'id': event.id}) }}">Modifier l'évènement</a>
+                </div>
+            </div>
+            <div>
+                {% if participants|length %}
+                <table class="table table-striped sortTable">
+                    <thead>
+                        <tr>
+                            <th>Genre</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Téléphone</th>
+                            <th>Email</th>
+                            <th>Inscriptions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for participant in participants %}
+                        <tr>
+                            <td> {{participant.person.gender.type}} </td>
+                            <td> {{participant.person.lastname}} </td>
+                            <td> {{participant.person.firstname}} </td>
+                            <td> {{participant.person.phone}} </td>
+                            <td> {{participant.person.email}} </td>
+                            <td>
+                                {% if participant.isValidated == true %}
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                    data-bs-target="#modalCancel">
+                                    Annuler l'inscription
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal" id="modalValidate" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="exampleModalLabel">Annuler l'inscription de
+                                                    {{participant.person.firstname}} {{participant.person.lastname}}
+                                                </h3>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>message</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Importer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalCancel">
+                                    Valider l'inscription
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal" id="modalCancel" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="exampleModalLabel">Valider l'inscription de
+                                                    {{participant.person.firstname}} {{participant.person.lastname}}
+                                                </h3>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>message</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Importer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                <p>Aucune inscription pour le moment/p>
+                    {% endif %}
+            </div>
+        </div>
+
+        {% endblock %}
+
+        {% block scripts %}
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        {% endblock %}

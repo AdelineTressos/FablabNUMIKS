@@ -1,0 +1,35 @@
+<div class="card shadow-lg mb-4 ">
+    <div class="card-body">
+    <div class="table-responsive ">
+        <table class="table table-hover sortTable">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Numéro de machine</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Accès Membre</th>
+                    <th scope="col">Réservée</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for machine in machines %}
+                    <tr>
+                        <td>{{ machine.id }}</td>
+                        <td>{{ machine.nameMachine }}</td>
+                        <td>{{ machine.numberMachine }}</td>
+                        <td>{{ machine.description }}</td>
+                        <td>{{ machine.memberAccess ? 'Oui' : 'Non' }}</td>
+                        <td>{{ machine.isBooked ? 'Oui' : 'Non' }}</td>
+                        <td>
+                            <a href="{{ path('admin_machines_show', {'id': machine.id}) }}" class="btn btn-outline-primary btn-sm">Détails</a>
+                            <a href="{{ path('admin_machines_edit', {'id': machine.id}) }}" class="btn btn-outline-primary btn-sm">Modifier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>

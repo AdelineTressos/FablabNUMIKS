@@ -1,0 +1,29 @@
+{% extends 'visitor/index.html.twig' %}
+
+{% block title %}Accueil - Fablab NUMIKS{% endblock %}
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('assets/styles/charter.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/styles/dimensionpage.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/styles/homePage/home_page.css') }}">  
+
+
+{% endblock %}
+
+{% block main %}
+    {% block fablab_home %}
+        {% include 'home/fablab_home.html.twig' %}
+    {% endblock %}
+    
+    {% block events %}
+        {# {% include 'home/events_home_page.html.twig' %} #}
+    {% endblock %}
+
+    {% block equipements %}
+        {% include 'home/machines_home_page.html.twig' %}       
+    {% endblock %}
+
+    {% block infos %}
+            {% include 'numiks/infos.html.twig' %}
+    {% endblock %}
+{% endblock %}

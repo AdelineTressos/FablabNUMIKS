@@ -1,0 +1,114 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Détails de la réservation
+{% endblock %}
+
+{% block main %}
+	<div class="container mt-5">
+		<h1>Détails de la réservation</h1>
+
+		<dl class="row">
+			<dt class="col-sm-3">Date de réservation</dt>
+			<dd class="col-sm-9">{{ reservation.dateReservation|date('Y-m-d') }}</dd>
+
+			<dt class="col-sm-3">Heure de début</dt>
+			<dd class="col-sm-9">{{ reservation.startHour|date('H:i') }}</dd>
+
+			<dt class="col-sm-3">Heure de fin</dt>
+			<dd class="col-sm-9">{{ reservation.endHour|date('H:i') }}</dd>
+
+
+			<dt class="col-sm-3">workspace</dt>
+			<dd class="col-sm-9">{{ reservation.workspace.nameworkspace }}</dd>
+
+			<dt class="col-sm-3">Valider réservation</dt>
+			<dd class="col-sm-9">{{ reservation.isIsValidated ? 'Oui' : 'Non' }}</dd>
+
+		</dl>
+
+		<h2>Informations sur l'utilisateur</h2>
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>Prénom</th>
+					<td>{{ reservation.user.firstname }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ reservation.user.lastname }}</td>
+				</tr>
+				<tr>
+					<th>Numéro de téléphone</th>
+					<td>{{ reservation.user.phone }}</td>
+				</tr>
+				<tr>
+					<th>Nom d'utilisateur</th>
+					<td>{{ reservation.user.username }}</td>
+				</tr>
+				<tr>
+					<th>E-mail</th>
+					<td>{{ reservation.user.email }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div>
+			<a href="{{ path('app_admin_reservations_workspace') }}" class="btn btn-secondary">Retour à la liste</a>
+			<a href="{{ path('app_admin_reservations_edit_workspace', {'id': reservation.id}) }}" class="btn btn-primary">Éditer</a>
+			<a href="#" class="btn btn-danger" onclick="openConfirmationModal('{{ path('app_admin_reservations_delete_workspace', {'id': reservation.id}) }}')">Supprimer</a>
+			{% if not reservation.isIsValidated %}
+				<a href="#" class="btn btn-success" onclick="openValidationModal('{{ path('app_admin_reservations_validate_workspace', {'id': reservation.id}) }}')">Valider la réservation</a>
+			{% else %}
+				<button class="btn btn-success" disabled>Déjà validée</button>
+			{% endif %}
+		</div>
+
+	</div>
+
+
+	<!-- Modal de confirmation de suppression -->
+	<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteConfirmationModalLabel">Confirmer la suppression</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Êtes-vous sûr de vouloir supprimer cette réservation ? Cette action est irréversible.
+					<p>Un mail sera automatiquement envoyé à l'utilisateur :
+						{{ reservation.user.email }}</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+					<button type="button" class="btn btn-danger" id="deleteConfirmBtn">Supprimer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal de confirmation de validation -->
+	<div class="modal fade" id="validationConfirmationModal" tabindex="-1" aria-labelledby="validationConfirmationModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="validationConfirmationModalLabel">Confirmer la validation</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Êtes-vous sûr de vouloir valider cette réservation ?
+					<p>Un mail de confirmation sera automatiquement envoyé à l'utilisateur :
+						{{ reservation.user.email }}</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+					<button type="button" class="btn btn-success" id="validateConfirmBtn">Valider la réservation</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block scripts %}
+	{{parent()}}
+	<script src="{{ asset('assets/javascript/showReservationAdmin.js') }}"></script>
+{% endblock %}

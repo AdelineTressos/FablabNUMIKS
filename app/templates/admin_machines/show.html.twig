@@ -1,0 +1,67 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Détails de la machine
+{% endblock %}
+
+{% block main %}
+	<div class="container mt-5 animate__animated animate__fadeInLeftBig">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card shadow-lg border-0">
+					<div class="card-header ">
+						<h3 class="mb-0">Détails de la machine</h3>
+					</div>
+					<div class="card-body">
+						<div class="d-flex justify-content-center">
+							{% if machine.machinePicture %}
+								<img src="{{ asset('assets/uploads/' ~ machine.machinePicture) }}" class="mb-3 img-fluid rounded" alt="Image de la machine" style="max-height: 350px; width: auto;">
+							{% endif %}
+						</div>
+
+						<h4 class="card-title">{{ machine.nameMachine }}</h4>
+						<p class="card-text">
+							<strong>Numéro de la machine :</strong>
+							{{ machine.numberMachine }}</p>
+						<p class="card-text">
+							<strong>Description :</strong>
+							{{ machine.description }}</p>
+						<p class="card-text">
+							<strong>Accès membre :</strong>
+							{{ machine.memberAccess ? 'Oui' : 'Non' }}</p>
+						<p class="card-text">
+							<strong>Réservée :</strong>
+							{{ machine.isBooked ? 'Oui' : 'Non' }}</p>
+					</div>
+					<div class="card-footer bg-transparent">
+						<a href="{{ path('app_admin_machines') }}" class="btn btn-outline-primary">Retour à la liste</a>
+						<a href="{{ path('admin_machines_edit', {'id': machine.id}) }}" class="btn btn-outline-secondary">Éditer</a>
+						<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+							Supprimer
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Êtes-vous sûr de vouloir supprimer cette machine ?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+					<form action="{{ path('admin_machines_delete', {'id': machine.id}) }}" method="post">
+						<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ machine.id) }}">
+						<button type="submit" class="btn btn-danger">Confirmer</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

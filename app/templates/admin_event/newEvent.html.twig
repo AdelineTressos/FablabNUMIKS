@@ -1,0 +1,53 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Créer un nouvel évènement{% endblock %}
+
+{% block main %}
+<h1>Créer un nouvel évènement</h1>
+<a href="{{ path('app_admin_event') }}">
+    < Retour</a>
+
+        {% form_theme form 'bootstrap_5_layout.html.twig' %}
+        {{ form_start(form) }}
+        {# {{ form_widget(form) }} #}
+        <div class="row">
+            <div class="col-md-12">
+                {{ form_row(form.name_event) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.start_date) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.end_date) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.start_hour) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.end_hour) }}
+            </div>
+            <div class="col-md-12">
+                {{ form_row(form.front_media) }}
+            </div>
+            <div class="col-md-12">
+                {{ form_row(form.description) }}
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-2">
+                    {{ form_row(form.max_participants) }}
+                </div>
+                <div class=" col-md-5 align-self-center" style="font-weight: bold;">
+                    {{ form_row(form.is_member_only) }}
+                </div>
+                <div class="col-md-5  align-self-center" style="font-weight: bold;">
+                    {{ form_row(form.is_published) }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <!-- Bouton de soumission modifié ici -->
+                <button type="submit" class="btn btn-outline-primary">Enregistrer</button>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+        {% endblock %}

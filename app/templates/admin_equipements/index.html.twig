@@ -1,0 +1,37 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Gestion des Équipements{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Gestion des Équipements</h1>
+
+    <div class="row g-4 animate__animated animate__fadeInLeftBig animate__fast">
+        <!-- Gestion des machines -->
+        <div class="col-md-6">
+            <div class="card shadow h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title"><i class="fas fa-cogs me-2"></i>Gestion des Machines</h5>
+                        <p class="card-text">Accédez à la liste des machines pour les consulter, les modifier ou les supprimer.</p>
+                    </div>
+                    <a href="{{ path('app_admin_machines') }}" class="btn btn-primary mt-3 align-self-start">Gérer les Machines</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gestion des espaces de travail -->
+        <div class="col-md-6">
+            <div class="card shadow h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title"><i class="fas fa-th-large me-2"></i>Gestion des Espaces de Travail</h5>
+                        <p class="card-text">Accédez à la gestion des espaces de travail pour consulter, modifier ou supprimer des espaces.</p>
+                    </div>
+                    <a href="{{ path('app_admin_workspaces') }}" class="btn btn-primary mt-3 align-self-start">Gérer les Espaces de Travail</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

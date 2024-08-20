@@ -1,0 +1,33 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Réservations dashboard{% endblock %}
+
+{% block main %}
+<div class="container mt-5"> 
+    <h1 class="mb-4 text-center">Gestion des réservations</h1> 
+
+    <div class="row justify-content-center"> 
+        <!-- Réservations des machines -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Réservations des machines</h5>
+                    <p class="card-text">Accédez à la gestion des réservations des espaces machines pour consulter, modifier ou supprimer des réservations.</p>
+                    <a href="{{ path('app_admin_reservations_machine') }}" class="btn btn-primary">Gérer les réservations</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Réservations des espaces de travail -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Réservations des espaces de travail</h5>
+                    <p class="card-text">Accédez à la gestion des réservations des espaces de travail pour consulter, modifier ou supprimer des réservations.</p>
+                    <a href="{{ path('app_admin_reservations_workspace') }}" class="btn btn-primary">Gérer les réservations</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

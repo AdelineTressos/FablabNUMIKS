@@ -1,0 +1,27 @@
+<div class="card shadow-lg mb-4 animate__animated animate__fadeInLeftBig">
+	<div class="card-body">
+		<div class="table-responsive ">
+			<table class="table table-hover sortTable">
+				<thead class="table-light">
+					<tr>
+						<th>Nom</th>
+						<th>Description</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for workspace in workspaces %}
+						<tr>
+							<td>{{ workspace.nameWorkspace }}</td>
+							<td>{{ workspace.description | default('N/A') }}</td>
+							<td>
+								<a href="{{ path('admin_workspaces_show', {'id': workspace.id}) }}" class="btn btn-outline-primary btn-sm">Détails</a>
+								<a href="{{ path('admin_workspaces_edit', {'id': workspace.id}) }}" class="btn btn-outline-primary btn-sm">Modifier</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

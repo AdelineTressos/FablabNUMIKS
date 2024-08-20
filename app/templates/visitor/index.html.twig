@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Fablab NUMIKS
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/styles/footer.css') }}">
+    <link
+    rel="stylesheet" href="{{ asset('assets/styles/navBarUser.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+
+	{% block header %}
+		<header>
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container-fluid img-nav d-flex justify-content-between">
+					<a class="navbar-brand" href="#">
+						<img src="{{ asset('assets/images/logoFablabNavbar.svg') }}" alt="Logo du FabLab">
+					</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse mt-auto" id="navbarSupportedContent">
+						<ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-end correction-padding-btn">
+							<li class="nav-item dropdown test">
+								<a class="nav-link dropdown-toggle text-light" href="{{ path('app_numiks')}}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									NUMIKS
+								</a>
+								<ul class="dropdown-menu background-color-nav">
+									<li class="border-separer-text">
+										<a class="dropdown-item text-light" href="{{ path('app_numiks') }}">
+											<strong>Le FabLab</strong>
+										</a>
+									</li>
+									<li class="border-separer-text">
+										<a class="dropdown-item text-light" href="#">Espace
+											<strong>G. Halimi</strong>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item text-light" href="#">Infos Pratiques</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-light" aria-current="page" href="{{path('app_visitor_events')}}">AGENDA</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<strong>ÉQUIPEMENTS</strong>
+								</a>
+								<ul class="dropdown-menu background-color-nav">
+									<li class="border-separer-text">
+										<a class="dropdown-item text-light" href="{{path('machines')}}">Les machines</a>
+									</li>
+									<li class="border-separer-text">
+										<a class="dropdown-item text-light" href="{{path('machines')}}">Les pôles</a>
+									</li>
+									<li>
+										<a class="dropdown-item text-light" href="#">Conditions d’utilisation</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-light" href="{{path('app_route_articles')}}">ACTUALITÉS</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									ADHÉSION
+								</a>
+
+								<ul class="dropdown-menu background-color-nav">
+									{% if app.user %}
+										{% if is_granted('ROLE_ADMIN') %}
+											<li class="nav-item text-left">
+												<a class="nav-link text-light" href="{{ path('admin_dashboard') }}">Gestion admin</a>
+											</li>
+										{% endif %}
+										{% if app.user.isIsValidated() %}
+											<li class="nav-item text-left">
+												<a class="nav-link text-light" href="{{path('app_users_show', {'id': app.user.id})}}">Mon profil</a>
+											</li>
+											<li class="nav-item text-left">
+												<a class="nav-link text-light" href="#">Mes réservations</a>
+											</li>
+											<li class="nav-item text-left">
+												<a class="nav-link text-light" href="#">Réserver</a>
+											</li>
+										{% endif %}
+										<li class="nav-item text-left test">
+											<a class="nav-link text-light" href="{{ path('app_logout') }}">Me déconnecter</a>
+										</li>
+									{% else %}
+										<li class="nav-item text-left">
+											<a class="nav-link text-light" href="{{ path('app_login') }}">Connexion</a>
+										</li>
+										<li class="nav-item text-left">
+											<a class="nav-link text-light" href="{{ path('app_register') }}">Adhérer</a>
+										</li>
+									{% endif %}
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			{% if app.user and app.user.isIsEmailVerified == false %}
+				<div class="alert alert-warning alert-dismissible" role="alert">
+					<button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="class"></button>
+					<div class="alert-message">
+						<p>
+							<strong>Votre compte n'est pas activé</strong>, renvoyer le lien d'activation sur l'email
+							<a href="{{ path('resend_verif')}}">
+								cliquez ici !</a>
+						</p>
+					</div>
+				</div>
+			{% endif %}
+			{% include "components/_flash.html.twig" %}
+		</header>
+	{% endblock %}
+
+    {% block main %}
+        <!--- Pour récupéré la navBar et le footer pour chaque page
+                     visitor effectuer : { extends 'visitor/index.html.twig' %}
+                    Dans votre page travailler avec le {block main} -->
+    {% endblock %}
+
+    {% block footer %}
+        <footer class="container-fluid bg-footer-custom pt-5 pb-5 fixed-bottom">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="footer-links footer-small-text">
+                        <a href="/numiks" class="footer-link-text text-white me-2" title="Découvrez NUMIKS">NUMIKS</a>
+                        <a href="/agenda" class="footer-link-text text-white me-2" title="Consultez notre agenda">AGENDA</a>
+                        <a href="/equipement" class="footer-link-text text-white me-2" title="Explorez nos équipements">EQUIPEMENT</a>
+                        <a href="/actualite" class="footer-link-text text-white me-2" title="Lisez nos dernières actualités">ACTUALITE</a>
+                        <a href="/adhesion" class="footer-link-text text-white" title="Rejoignez-nous en devenant membre">ADHESION</a>
+                    </p>
+                    <a href="/mentions-legales" class="footer-mention footer-mention-text text-white" title="Consultez nos mentions légales">Mentions légales</a>
+                </div>
+
+                <div class="col-md-6 footer-small-text text-white">
+                    <div>
+                        <i class="fa fa-map-marker me-2"></i>
+                        <span>35 rue de la Haye, 34080 MONTPELLIER</span>
+                    </div>
+                    <div>
+                        <i class="fa fa-phone me-2"></i>
+                        <span>04 . 99 . 54 . 77 . 29</span>
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope me-2"></i>
+                        <a href="mailto:mpt.dubout@ville-montpellier.fr" class="text-white" aria-label="Envoyer un email à mpt.dubout@ville-montpellier.fr">mpt.dubout@ville-montpellier.fr</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+
+
+    {% block javascripts %}
+        
+        <script src="{{ asset('assets/javascript/navBarUser.js') }}"></script>
+    {% endblock %}
+{% endblock %}

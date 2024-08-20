@@ -1,0 +1,182 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Adhésion{% endblock %}
+
+{% block main %}
+
+<a role="button" class="btn btn-outline-primary btn-sm" href="{{ path('app_admin_members') }}" style="border-radius:10%;">
+    < Retour </a>
+
+{% if user.isvalidated %}
+<h1>Informations sur l'adhésion</h1>
+{% else %}
+<h1>Valider l'adhésion</h1>
+{% endif %}
+
+<section>
+            <table class="table tableOne">
+                <tbody>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Genre</th>
+                        <td>{{ user.gender.type }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ user.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Prénom</th>
+                        <td>{{ user.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Téléphone</th>
+                        <td>{{ user.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de naissance</th>
+                        <td>{{ user.birthday ? user.birthday|date('d-m-Y')}}</td>
+                    </tr>
+                    <tr>
+                        <th>Adresse</th>
+                        <td>{{ user.street }}</td>
+                    </tr>
+                    <tr>
+                        <th>Complément d'adresse</th>
+                        <td>{{ user.adressComplement }}</td>
+                    </tr>
+                    <tr>
+                        <th>Code postal</th>
+                        <td>{{ user.postalCode.number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ville</th>
+                        <td>{{ user.city.nameCity }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date première adhésion</th>
+                        <td>{{ user.firstMembership ? user.firstMembership|date('d-m-Y')}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date dernière adhésion</th>
+                        <td>{{ user.lastMembership ? user.lastMembership|date('d-m-Y') : '/' }}</td>
+                    </tr>
+
+                    {% if user.isOrganization %}
+                    <tr>
+                        <th>Structure ?</th>
+                        <td>Oui</td>
+                    </tr>
+                    <tr>
+                        <th>Nom de la structure</th>
+                        <td>{{ user.nameOrganization }}</td>
+                    </tr>
+                    <tr>
+                        <th>Numéro de SIRET</th>
+                        <td>{{ user.numSiret }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <th>Structure ?</th>
+                        <td>Non</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+
+            <div>
+                {% if not user.isValidated %}
+                <div class="d-flex justify-content-between">
+                    {# delete #}
+                    {{ include('admin_members/deleteMember.html.twig') }}
+                    <a role="button" class="btn btn-outline-primary"
+                        href="{{ path('app_admin_edit', {'id': user.id}) }}">Valider
+                        l'adhésion</a>
+                    {# edit #}
+                    <a role="button" class="btn btn-outline-primary"
+                        href="{{ path('app_admin_edit', {'id': user.id}) }}">Modifier</a>
+                </div>
+                {% else %}
+                <div class=" d-flex justify-content-end">
+                    <a role="button" class="btn btn-outline-primary"
+                        href="{{ path('app_admin_edit', {'id': user.id}) }}">Modifier l'adhésion</a>
+                </div>
+                {% endif %}
+            </div>
+</section>
+
+{% if user.isvalidated %}
+<section>
+    <h2>Réservations des équipements</h2>
+    <table class="table table-striped " id="equipmentReservationsTable">
+        <thead>
+            <tr>
+                <th>Date de réservation</th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
+                <th>Espace de travail</th>
+                <th>Machine</th>
+                <th>Validée</th>
+                <th>État</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if reservations|length > 0 %}
+                {% for reservation in reservations %}
+                <tr>
+                    <td>{{ reservation.dateReservation|date('d-m-Y') }}</td>
+                    <td>{{ reservation.startHour|date('H:i') }}</td>
+                    <td>{{ reservation.endHour|date('H:i') }}</td>
+                    <td>{{ reservation.workspace ? reservation.workspace.nameWorkspace : 'N/A' }}</td>
+                    <td>{{ reservation.machine ? reservation.machine.nameMachine : 'N/A' }}</td>
+                    <td>{{ reservation.IsValidated ? 'Oui' : 'Non' }}</td>
+                    <td>{{ reservation.stateReservation }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucune réservation trouvée pour cet utilisateur.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</section>
+<section>
+    <h2>Inscriptions aux évènements</h2>
+    <table class="table table-striped " id="eventRegistrationsTable">
+        <thead>
+            <tr>
+                <th>Nom de l'évènement</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Inscription Validée</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if participations|length > 0 %}
+                {% for participation in participations %}
+                <tr>
+                    <td>{{ participation.event.nameEvent }}</td>
+                    <td>{{ participation.event.startDate|date('d/m/Y') }}</td>
+                    <td>{{ participation.event.endDate|date('d/m/Y') }}</td>
+                    <td>{{ participation.isIsValidated ? 'Oui' : 'Non' }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">Aucune Inscription trouvée pour cet utilisateur.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</section>
+{% endif %}
+
+{% endblock %}

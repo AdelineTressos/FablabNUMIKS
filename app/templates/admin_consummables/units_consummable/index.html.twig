@@ -1,0 +1,58 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Index des Unités Consommables
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link
+	rel="stylesheet" href="{{ asset('assets/styles/categorieAdmin.css') }}">
+<!-- Assurez-vous d'ajouter jQuery ici si nécessaire -->
+{% endblock %}
+
+{% block main %}
+	<div class="container-fluid mt-5">
+		<div class="text-center">
+			<h1 class="mb-4">Index des Unités Consommables</h1>
+			{% include "components/_flash.html.twig" %}
+		</div>
+		<!-- Champ de recherche -->
+		<input type="text" id="searchInput" class="form-control mb-3" placeholder="Rechercher par nom...">
+
+		<div class="table-responsive">
+			<table class="table table-striped table-hover" id="unitsTable">
+				<thead class="table-secondary text-center">
+					<tr>
+						<th>Id</th>
+						<th>Nom de l'unité</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody class="text-center">
+					{% for units_consummable in units_consummables %}
+						<tr>
+							<td>{{ units_consummable.id }}</td>
+							<td>{{ units_consummable.nameUnit }}</td>
+							<td>
+								<a class="btn create-new-link btn-sm" href="{{ path('app_units_consummable_show', {'id': units_consummable.id}) }}">Afficher</a>
+								<a class="btn create-new-link btn-sm" href="{{ path('app_units_consummable_edit', {'id': units_consummable.id}) }}">Modifier</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">Aucun enregistrement trouvé</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<a class="btn btn-success" href="{{ path('app_units_consummable_new') }}">Créer nouveau</a>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+{{parent()}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="{{ asset('assets/javascript/unites.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Publication :
+	{{ publication.title }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('assets/styles/articlesVisitor.css') }}">
+	<style>
+		.publication-image {
+			width: 25%; /* Définit la largeur de l'image à 50% */
+			height: auto; /* Maintient l'aspect ratio de l'image */
+			display: block; /* Assure que l'image est traitée comme un bloc pour la centrer correctement */
+			margin: 0 auto; /* Centre l'image horizontalement */
+		}
+	</style>
+{% endblock %}
+
+{% block main %}
+<a role="button" class="btn btn-outline-primary btn-sm" href="{{ path('app_admin_articles_index') }}" style="border-radius:10%;">
+    < Retour </a>
+
+	<div class="container mt-5">
+		{% include "components/_flash.html.twig" %}
+
+		<h1 class="mb-4">Publication :
+			{{ publication.title }}</h1>
+
+		<div class="card">
+			{% if publication.frontPicture %}
+				<img src="{{ asset('assets/uploads/' ~ publication.frontPicture) }}" class="card-img-top publication-image" alt="Image de {{ publication.title }}">
+			{% endif %}
+			<div class="card-body">
+				<h5 class="card-title">Titre de l'article :
+					{{ publication.title }}</h5>
+				<p class="card-text">Description :
+					{{ publication.description }}</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">ID :
+					{{ publication.id }}</li>
+				<li class="list-group-item">Date de publication :
+					{{ publication.datePublication ? publication.datePublication|date('Y-m-d') : 'Non définie' }}</li>
+				<li class="list-group-item">Publié :
+					{{ publication.isPublished ? 'Oui' : 'Non' }}</li>
+				{% if publication.media %}
+					<li class="list-group-item">
+						Média :
+						<a href="{{ publication.media }}" target="_blank">Voir la vidéo</a>
+					</li>
+				{% endif %}
+			</ul>
+			<div class="card-body d-flex justify-content-between">
+				<div>
+					<a href="{{ path('app_admin_articles_edit', {'id': publication.id}) }}" class="btn btn-warning">Modifier</a>
+				</div>
+				<div class="ms-auto">
+					{{ include('/admin_articles/_delete_form.html.twig') }}
+				</div>
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

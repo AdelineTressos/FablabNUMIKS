@@ -1,0 +1,23 @@
+{% extends 'visitor/index.html.twig' %}
+
+{% block title %}NUMIKS
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('assets/styles/numiksPage/numiks.css') }}">
+{% endblock %}
+
+	{% block main %}
+		{% block fablab %}
+			{% include 'numiks/fablab.html.twig' %}
+		{% endblock %}
+
+		{% block espaceHalimi %}
+			{% include 'numiks/espaceHalimi.html.twig' %}
+		{% endblock %}
+
+		{% block infos %}
+			{% include 'numiks/infos.html.twig' %}
+		{% endblock %}
+	{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Consommables
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('assets/styles/consummables.css') }}">
+
+{% endblock %}
+
+
+{% block main %}
+	<div class="text-center">
+		<h1>Gestions des consommables</h1>
+		{% include "components/_flash.html.twig" %}
+	</div>
+
+	<form method="get" action="{{ path('app_admin_consummables_index') }}" class="mb-4">
+		<div class="input-group">
+			<input type="text" name="search" class="form-control" placeholder="Recherche par nom" aria-label="Recherche par nom">
+			<button class="btn btn-outline-secondary" type="submit">Recherche</button>
+		</div>
+	</form>
+
+	<a href="{{ path('app_admin_consummables_new') }}" class="btn btn-custom">Créer un nouveau</a>
+	<div class="table-responsive">
+		<table class="table table-custom text-center table-striped">
+			<thead class="header-color table-secondary">
+				<tr>
+					<th class="align-middle">NOM</th>
+					<th class="align-middle">QUANTITER</th>
+					<th class="align-middle">LIMITE/SEUIL</th>
+					<th class="align-middle">DÉTAILS / MODIFIER</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for consummable in consummables %}
+					{% set highlight = consummable.quantity <= consummable.threshold ? 'table-danger' : '' %}
+					<tr data-name="{{ consummable.nameConsummable|e('html_attr') }}" class="{{ highlight }}">
+						<td class="align-middle">{{ consummable.nameConsummable }}</td>
+						<td class="align-middle">{{ consummable.quantity }}</td>
+						<td class="align-middle">{{ consummable.threshold }}</td>
+						<td class="align-middle">
+							<a href="{{ path('app_admin_consummables_show', {'id': consummable.id}) }}" class="btn btn-custom">DÉTAILS</a>
+							<a href="{{ path('app_admin_consummables_edit', {'id': consummable.id}) }}" class="btn btn-custom">MODIFIER</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Il n'y a pas de produits</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
+
+
+{% block scripts %}
+	{{ parent() }}
+	<script src="{{ asset('assets/javascript/consomables.js') }}"></script>
+{% endblock %}

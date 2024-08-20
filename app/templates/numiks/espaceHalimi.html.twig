@@ -1,0 +1,49 @@
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/styles/numiksPage/espaceHalimi.css') }}">
+{% endblock %}
+
+<section id="espaceHalimiSection" class="py-5">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col">
+				<h2 id="titleGiseleHalimi">Espace Gisèle Halimi</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="card mb-3" style="max-width: 540px;" id="containerPresentation">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img src="https://icones.pro/wp-content/uploads/2021/06/symbole-d-image-bleue-300x300.png" class="img-fluid rounded-start" alt="...">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h4 class="card-title">Présentation de l'espace Gisèle Halimi</h4>
+						<p class="card-text">Texte présentation de l'espace Gisèle Halimi.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="card mb-3" id="cardPartenairePresentation">
+			<div class="card-body" id="cardBodyPresentationPartenaire">
+				<h4 class="card-title" id="titleCardPresentationPartenaires">Les partenaires</h4>
+				<p class="card-text" id="textCardPresentationPartenaire">Texte de présentation des partenaires.</p>
+			</div>
+		</div>
+
+		<div class="row justify-content-center" id="rowPartenaire">
+			{% for i in 1..5 %}
+				<div class="col-12 col-md-4 col-lg-2" id="colPartenaire">
+					<div class="card mb-3"  id="cardLogoPartenaire{{ i }}">
+						<div class="card-body">
+							<img src="https://icones.pro/wp-content/uploads/2021/06/symbole-d-image-bleue-300x300.png" class="card-img-top" alt="Photo de l'employé">
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>

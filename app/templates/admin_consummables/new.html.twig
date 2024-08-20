@@ -1,0 +1,27 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Créer consommables{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('assets/styles/consummables.css') }}">
+    
+{% endblock %}
+
+{% block main %}
+<a role="button" class="btn btn-outline-primary btn-sm" href="{{ path('app_admin_consummables_index') }}" style="border-radius:10%;">
+    < Retour </a>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Créer un nouveau consommables</h1>
+            <div class="my-4">
+                {{ include('/admin_consummables/_form.html.twig') }}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

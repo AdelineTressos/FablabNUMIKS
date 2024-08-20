@@ -1,0 +1,68 @@
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/styles/numiksPage/infos.css') }}">
+{% endblock %}
+
+<section id="infosSection">
+	<div class="container text-center" id="infosBloc">
+		<div class="row">
+			<div class="col">
+				<h2 id="titleSectionInfo">Infos pratiques</h2>
+			</div>
+		</div>
+		<div class="row" id="rowInfos">
+			<div
+				class="col">
+				{# Card horaires fablab #}
+				<div class="card mb-5" id="cardHorraires">
+					<div class="row g-0" id="rowHorraires">
+						<ul class="list-group" id="listHorraire">
+							<li class="list-group-item disabled" aria-disabled="true">
+								<h5 class="card-title">Horaires d'ouverture</h5>
+							</li>
+							<li class="list-group-item">
+								<p>Du lundi au vendredi de 9h à 12h30 et de  13h30 à 17h30</p>
+							</li>
+							<li class="list-group-item">
+								<h5>Accueil sans RDV</h5>
+							</li>
+							<li class="list-group-item">
+								<p>Tous les mardis, mercredis et vendredis du mois.</p>
+							</li>
+							<li class="list-group-item">
+								<h5>Accueil SUR RDV</h5>
+							</li>
+							<li class="list-group-item">
+								<p>Tous les lundis et jeudis du mois.</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div
+				class="col" id="colContact">
+				{# Card Contact #}
+				<div class="card mb-4" id="cardContact">
+					<div class="row g-0">
+						<div class="col-md-4" id="contactInfos">
+							<h5 class="card-title">Contact</h5>
+							<p class="card-text">04.67.13.62.64</p>
+							<p class="card-text">fablab-numiks.gh@montpellier3m.fr</p>
+							<p class="card-text">35, rue de la Haye 34080 Montpellier</p>
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<img src="https://th.bing.com/th/id/OIP.bebflfU1m6VOBLKO5XGbKwAAAA?rs=1&pid=ImgDetMain" class="img-fluid rounded-start" alt="...">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Button open window contact page -->
+		<button type="button" id="openContactForm" >Nous contacter</button>
+	</div>
+</section>
+
+{% block javascript %}
+	<script src="{{ asset('assets/javascript/numiksPage/infos.js') }}"></script>
+{% endblock %}

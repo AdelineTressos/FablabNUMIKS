@@ -1,0 +1,67 @@
+{% extends 'visitor/index.html.twig' %}
+
+{% block title %}Me connecter
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('assets/styles/login.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/styles/dimensionpage.css') }}">
+{% endblock %}
+
+
+{% block main %}
+
+
+	<div class="container-fluid ">
+		<div class="row justify-content-center main-content">
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow my-5">
+					<div class="card-body">
+						<form method="post">
+							{% if error is defined %}
+							{% if error %}
+								<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+							{% endif %}
+							{% endif %}
+							{% if app.user %}
+								<div class="mb-3 text-center">
+									<p class="mb-span">Vous êtes déjà connecté en tant que
+										<span class="fw-bold">{{ app.user.userIdentifier }}</span>,
+										<a href="{{ path('app_logout') }}">Déconnexion</a>
+									</p>
+								</div>
+							{% else %}
+								<h1 class="h3 mb-3 font-weight-normal text-center">Me connecter</h1>
+								<div class="form-group">
+									<label for="inputUsername">Utilisateur</label>
+									<input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword">Mot de passe</label>
+									<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+								</div>
+
+								<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+								<button class="btn mt-3 btn-lg btn-primary btn-block" type="submit">
+									Connexion
+								</button>
+								<div class="mt-3 text-center">
+									<span class="mb-span">Pas encore adhérent ?</span>
+									<a href="{{ path('app_register')}}">Devenir adhérent</a>
+								</div>
+
+							{% endif %}
+						</form>
+						<div class="mt-2 text-center">
+							<a href="{{path('forgotten-password')}}">Mot de passe oublié ?
+								<span class="mb-span">cliquez ici</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

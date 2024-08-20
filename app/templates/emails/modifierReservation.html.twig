@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>Validation de votre réservation</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f9f9f9;
+				color: #333;
+			}
+			.container {
+				background-color: #ffffff;
+				padding: 20px;
+				margin: 20px auto;
+				width: 90%;
+				max-width: 600px;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+			h1,
+			h2 {
+				color: #6d3e91;
+			}
+			a,
+			a:visited {
+				color: #f28705;
+			}
+			.details li {
+				color: #6d3e91;
+			}
+			.footer {
+				margin-top: 20px;
+				font-size: 0.9em;
+				text-align: center;
+				color: #aaa;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Modification de votre réservation</h1>
+			<p>Bonjour
+				{{ reservation.user.firstname }},</p>
+
+			<h2>Détails de la réservation :</h2>
+			<ul class="details">
+				<li>Date de réservation :
+					{{ reservation.dateReservation|date('Y-m-d') }}</li>
+				<li>Heure de début :
+					{{ reservation.startHour|date('H:i') }}</li>
+				<li>Heure de fin :
+					{{ reservation.endHour|date('H:i') }}</li>
+				<li>
+					{% if reservation.machine.nameMachine is defined %}
+						Machine :
+						{{ reservation.machine.nameMachine }}
+					{% else %}
+						Poles :
+						{{ reservation.workspace.nameWorkspace }}
+					{% endif %}
+				</li>
+
+			</ul>
+
+			<p>Si vous avez des questions ou besoin d'informations supplémentaires, n'hésitez pas à nous contacter.</p>
+
+			<p class="footer">Merci d'utiliser nos services,<br>L'équipe FabLab</p>
+		</div>
+	</body>
+</html>

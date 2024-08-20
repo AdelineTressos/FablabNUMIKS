@@ -1,0 +1,26 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Modifier l'Unité Consommable{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/styles/categorieAdmin.css') }}">
+    <!-- Assurez-vous d'inclure le CSS de Bootstrap ici si ce n'est pas déjà fait dans le parent -->
+{% endblock %}
+
+{% block main %}
+<a role="button" class="btn btn-outline-primary btn-sm" href="{{ path('app_units_consummable_index') }}" style="border-radius:10%;">
+    < Retour </a>
+
+    <div class="container-fluid mt-5">
+        <div class="text-center">
+            <h1>Modifier l'Unité Consommable</h1>
+        </div>
+
+        {{ include('/admin_consummables/units_consummable/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+        <div class="text-center d-flex justify-content-between mt-3">
+            {{ include('/admin_consummables/units_consummable/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

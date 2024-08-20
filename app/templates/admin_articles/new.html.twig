@@ -1,0 +1,12 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+
+{% block title %}New Publications{% endblock %}
+
+{% block main %}
+    <h1>Create new Publications</h1>
+
+    {{ include('/admin_articles/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_articles_index') }}">back to list</a>
+{% endblock %}

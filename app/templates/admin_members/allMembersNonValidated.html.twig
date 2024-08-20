@@ -1,0 +1,42 @@
+<div class="table-responsive ">
+    <table class="table table-striped sortTable">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Téléphone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">Structure?</th>
+                <th scope="col">Nom de la structure</th>
+                <th scope="col">Numéro de SIRET</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for nonValidatedUser in nonValidatedUsers %}
+            {% if 'ROLE_ADMIN' not in nonValidatedUser.roles and 'ROLE_SUPERADMIN' not in nonValidatedUser.roles %}
+            <tr>
+                <td>{{ nonValidatedUser.lastname }}</td>
+                <td>{{ nonValidatedUser.firstname }}</td>
+                <td>{{ nonValidatedUser.phone }}</td>
+                <td>{{ nonValidatedUser.email }}</td>
+                <td>{{ nonValidatedUser.username }}</td>
+                <td>{{ nonValidatedUser.isOrganization ? 'Yes' : 'No' }}</td>
+                <td>{{ nonValidatedUser.nameOrganization }}</td>
+                <td>{{ nonValidatedUser.numSiret }}</td>
+                <td>
+                    <a role="button" class="btn btn-outline-primary"
+                        href="{{ path('app_admin_show', {'id': nonValidatedUser.id}) }}">voir</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% else %}
+            <tr>
+                <td colspan="7" class="text-center">Aucun utilisateur à afficher.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>

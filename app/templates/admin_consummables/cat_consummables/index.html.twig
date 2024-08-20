@@ -1,0 +1,54 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Index des Catégories de Consommables{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/styles/categorieAdmin.css') }}">
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid mt-5">
+        <h1 class="text-center">Index des Catégories de Consommables</h1>
+        {% include "components/_flash.html.twig" %}
+
+        <div class="mb-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Rechercher par nom...">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped text-center" id="categoriesTable">
+                <thead class="table-secondary text-white">
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Nom de la Catégorie</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cat_consummable in cat_consummables %}
+                        <tr>
+                            <td>{{ cat_consummable.id }}</td>
+                            <td>{{ cat_consummable.nameCategory }}</td>
+                            <td>
+                                <a href="{{ path('app_cat_consummables_show', {'id': cat_consummable.id}) }}" class="btn btn-sm create-new-link">Afficher</a>
+                                <a href="{{ path('app_cat_consummables_edit', {'id': cat_consummable.id}) }}" class="btn btn-sm create-new-link">Modifier</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <a href="{{ path('app_cat_consummables_new') }}" class="btn btn-success">Créer nouveau</a>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ parent() }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('assets/javascript/cat.js') }}"></script>
+{% endblock %}

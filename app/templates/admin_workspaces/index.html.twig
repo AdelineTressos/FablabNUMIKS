@@ -1,0 +1,25 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Admin Espace Workspace
+{% endblock %}
+
+{% block main %}
+	<div class="container mt-5">
+		<h1 class="mb-4 text-center">Gestion des Espaces de Travail</h1>
+		<div class="text-end mb-3">
+			<a href="{{ path('admin_workspaces_new') }}" class="btn btn-secondary mb-4">Ajouter un nouvel espace</a>
+		</div>
+
+
+		<div class="card-header text-center "><h2 class="mb-3 mt-3">Espaces Réservés</h2></div>
+		{{ include('admin_workspaces/table.html.twig', {'workspaces': reservedWorkspaces}) }}
+
+
+		<div class="card-header text-center "><h2 class="mb-3 mt-3">Espaces avec Accès Membre</h2></div>
+		{{ include('admin_workspaces/table.html.twig',  {'workspaces': memberAccessWorkspaces}) }}
+
+
+		<div class="card-header text-center "><h2 class="mb-3 mt-3">Ensemble de tous les espaces</h2></div>
+		{{ include('admin_workspaces/table.html.twig', {'workspaces': allAccessWorkspaces}) }}
+	</div>
+{% endblock %}

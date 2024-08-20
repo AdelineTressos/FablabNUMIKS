@@ -1,0 +1,83 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<link rel="stylesheet" href="{{ asset('assets/styles/articlesAdmin.css') }}">
+	
+{% endblock %}
+
+{% block title %}Gestions des Publications d'articles
+{% endblock %}
+
+{% block main %}
+	{% include "components/_flash.html.twig" %}
+	<div class="text-center">
+		<h1>Articles Publiés</h1>
+	</div>
+	<div class="text-center mb-4">
+		<input type="text" id="searchInput" class="form-control" placeholder="Rechercher par titre...">
+	</div>
+
+	<div class="mb-4 ">
+		<a href="{{ path('app_admin_articles_new') }}" class="btn color-btnn ">Créer un nouveau article</a>
+	</div>
+
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		{% for publication in publications %}
+			{% if publication.isPublished %}
+				<div class="col">
+					<div class="card h-100" data-title="{{ publication.title | lower }}">
+						{% if publication.frontPicture %}
+							<img src="{{ asset('assets/uploads/' ~ publication.frontPicture) }}" class="card-img-top" alt="Image for {{ publication.title }}">
+						{% endif %}
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title">{{ publication.title }}</h5>
+							<p class="card-text">{{ publication.description|length > 100 ? publication.description|slice(0, 100) ~ '...' : publication.description }}</p>
+							<div class="mt-auto form-group d-flex align-items-center justify-content-between">
+								<a href="{{ path('app_admin_articles_show', {'id': publication.id}) }}" class="btn color-btnn">Détails</a>
+								<a href="{{ path('app_admin_articles_edit', {'id': publication.id}) }}" class="btn btn-warning">Modifier</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		{% else %}
+			<div class="col">
+				<p>Pas de publication</p>
+			</div>
+		{% endfor %}
+	</div>
+	<div class="text-center">
+		<h2 class="mt-5 mb-5">Articles non plublié</h2>
+	</div>
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		{% for publication in publications %}
+			{% if not publication.isPublished %}
+				<div class="col">
+					<div class="card h-100" data-title="{{ publication.title | lower }}">
+						{% if publication.frontPicture %}
+							<img src="{{ asset('assets/uploads/' ~ publication.frontPicture) }}" class="card-img-top" alt="Image for {{ publication.title }}">
+						{% endif %}
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title">{{ publication.title }}</h5>
+							<p class="card-text">{{ publication.description|length > 100 ? publication.description|slice(0, 100) ~ '...' : publication.description }}</p>
+							<div class="mt-auto form-group d-flex align-items-center justify-content-between">
+								<a href="{{ path('app_admin_articles_show', {'id': publication.id}) }}" class="btn color-btnn">Détails</a>
+								<a href="{{ path('app_admin_articles_edit', {'id': publication.id}) }}" class="btn btn-warning">Modifier</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		{% else %}
+			<div class="col">
+				<p>No brouillon records found</p>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}
+{% block scripts %}
+	{{ parent() }}
+		<script src="{{ asset('assets/javascript/articlesAdmin.js') }}"></script>
+{% endblock %}

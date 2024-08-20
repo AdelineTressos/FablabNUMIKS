@@ -1,0 +1,65 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Éditer l'Espace de Travail
+{% endblock %}
+
+{% block main %}
+	<div class="container mt-5 animate__animated animate__fadeInLeftBig">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<h1>Éditer l'Espace de Travail</h1>
+		</div>
+
+		{{ form_start(form, {'attr': {'class': 'form'}}) }}
+		<div class="mb-3">
+			{{ form_label(form.name_workspace) }}
+			{{ form_widget(form.name_workspace, {'attr': {'class': 'form-control'}}) }}
+			{{ form_errors(form.name_workspace) }}
+		</div>
+		<div class="mb-3">
+			{{ form_label(form.description) }}
+			{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+			{{ form_errors(form.description) }}
+		</div>
+		<div class="mb-3 form-check">
+			{{ form_widget(form.member_access, {'attr': {'class': 'form-check-input'}}) }}
+			{{ form_label(form.member_access) }}
+			{{ form_errors(form.member_access) }}
+		</div>
+		<div class="mb-3 form-check">
+			{{ form_widget(form.is_booked, {'attr': {'class': 'form-check-input'}}) }}
+			{{ form_label(form.is_booked) }}
+			{{ form_errors(form.is_booked) }}
+		</div>
+		<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#saveConfirmationModal">Sauvegarder</button>
+		<a href="{{ path('app_admin_workspaces') }}" class="btn btn-secondary">Retour à la liste</a>
+		{{ form_end(form) }}
+	</div>
+
+
+
+<!-- Modal de Confirmation de Sauvegarde -->
+<div class="modal fade" id="saveConfirmationModal" tabindex="-1" aria-labelledby="saveConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="saveConfirmationModalLabel">Confirmer la Sauvegarde</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir sauvegarder les modifications ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-success" onclick="submitForm()">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+{% block scripts %}
+	{{parent()}}
+	<script src="{{ asset('assets/javascript/workSpaceAdmin.js') }}"></script>
+{% endblock %}

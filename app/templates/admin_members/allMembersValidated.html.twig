@@ -1,0 +1,43 @@
+<div class="table-responsive">
+    <table class="table table-striped sortTable">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Téléphone</th>
+                <th scope="col">Email</th>
+                <th scope="col">Username</th>
+                <th scope="col">Première adhésion</th>
+                <th scope="col">Dernière adhésion</th>
+                <th scope="col">Nom de la structure</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if validatedUsers is empty %}
+            <tr>
+                <td colspan="9" class="text-center"> Aucun utilisateur à afficher.</td>
+            </tr>
+            {% else %}
+                {% for validatedUser in validatedUsers %}
+                    {% if 'ROLE_ADMIN' not in validatedUser.roles and 'ROLE_SUPERADMIN' not in validatedUser.roles %}
+                    <tr>
+                        <td>{{ validatedUser.lastname }}</td>
+                        <td>{{ validatedUser.firstname }}</td>
+                        <td>{{ validatedUser.phone }}</td>
+                        <td>{{ validatedUser.email }}</td>
+                        <td>{{ validatedUser.username }}</td>
+                        <td>{{ validatedUser.firstMembership ? validatedUser.firstMembership|date('d-m-Y') : '/' }}</td>
+                        <td>{{ validatedUser.lastMembership ? validatedUser.lastMembership|date('d-m-Y') : '/' }}</td>
+                        <td>{{ validatedUser.nameOrganization }}</td>
+                        <td>
+                            <a role="button" class="btn btn-outline-primary"
+                                href="{{ path('app_admin_show', {'id': validatedUser.id}) }}">voir</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>

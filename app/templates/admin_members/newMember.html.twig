@@ -1,0 +1,71 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Créer un Nouvel Utilisateur{% endblock %}
+
+{% block main %}
+<a role="button" class="btn btn-outline-primary btn-sm" href="{{ path('app_admin_members') }}" style="border-radius:10%;">
+    < Retour </a>
+<h1>Créer une nouvelle adhésion</h1>
+
+        {% form_theme userForm 'bootstrap_5_layout.html.twig' %}
+        {{ form_start(userForm) }}
+
+        <div class="row justify-content-center ">
+            <div class="col-md-2">
+                {{ form_row(userForm.gender) }}
+            </div>
+            <div class="col-md-5">
+                {{ form_row(userForm.firstname) }}
+            </div>
+            <div class="col-md-5">
+                {{ form_row(userForm.lastname) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(userForm.birthday) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_row(userForm.phone) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(userForm.email) }}
+            </div>
+            <div class="row align-items-center border border-2 rounded ms-0.5">
+                <div class="col-md-4">
+                    {{ form_row(userForm.username) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(userForm.first_membership) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_row(userForm.last_membership) }}
+                </div>
+            </div>
+            <div class="col-md-12">
+                {{ form_row(userForm.street) }}
+            </div>
+            <div class="col-md-12">
+                {{ form_row(userForm.adress_complement) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(userForm.city) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(userForm.postalcode) }}
+            </div>
+            <div class="row align-items-center border border-2 rounded ms-0.5">
+                <div class="col-md-2" style="font-weight: bold;">
+                    {{ form_row(userForm.is_organization) }}
+                </div>
+                <div class="col-md-5">
+                    {{ form_row(userForm.name_organization) }}
+                </div>
+                <div class="col-md-5">
+                    {{ form_row(userForm.num_siret) }}
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-3 me-3">
+            <button type="submit" class="btn btn-outline-primary">Sauvegarder</button>
+        </div>
+        {{ form_end(userForm) }}
+        {% endblock %}

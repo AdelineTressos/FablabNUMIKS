@@ -1,0 +1,43 @@
+
+{% extends 'visitor/index.html.twig' %}
+
+{% block stylesheets %}
+{{parent()}}
+    <link rel="stylesheet" href="{{ asset('assets/styles/visitorEventsAll.css') }}">
+    
+
+{% endblock %}
+
+{% block title %}Agenda{% endblock %}
+
+{% block main %}
+<section class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center mb-5">
+        <h1 class="display-3 font-weight-bold">AGENDA</h1>
+        {# <h3 class="lead">Liste des événements</h3> #}
+      </div>
+    </div>
+    <div class="row">
+       {% for event in events %}
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                
+                <a href="{{ path('event.show', {'id': event.id}) }}" class="card-link">
+                    <div class="card text-dark card-has-bg" style="background-image:url('{{ event.frontMedia }}')">
+                        <div class="card-img-overlay d-flex flex-column text-center">
+                            <div class="card-body">
+                                <big class="card-meta mb-2 text-center">{{ event.startDate ? event.startDate|date('d-m') : '' }}</big>
+                                <h2 class="card-title mt-2 text-center">{{ event.nameEvent }}</h2>
+                                <small><i class="far fa-clock text-center"></i> {{ event.startHour ? event.startHour|date('H:i') : '' }} - {{ event.endHour ? event.endHour|date('H:i') : '' }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

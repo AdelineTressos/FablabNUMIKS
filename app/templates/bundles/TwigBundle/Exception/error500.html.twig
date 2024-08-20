@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+{% include 'components/navBar.html.twig' %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1 class="display-1" style="color: #6d3e91;">500</h1>
+      <p class="lead" style="color: #bca3cedf;">La page que vous avez demandée n'a pas été trouvée.</p>
+      <a href="#" class="btn" style="background-color: #f28705; color: white;">Retour à l'accueil</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

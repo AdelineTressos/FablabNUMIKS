@@ -1,0 +1,230 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Réservations Poles{% endblock %}
+
+{% block main %}
+<div class="container mt-5">
+{% include "components/_flash.html.twig" %}
+    <h1 class="mb-4">Gestion des réservations Poles</h1>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ path('app_admin_reservations_create_workspace') }}" class="btn btn-primary">Créer une nouvelle réservation</a>
+    </div>
+
+    <div class="mb-4">
+        <form action="{{ path('app_admin_reservations_workspace') }}" method="GET" class="form-inline">
+            <div class="form-group mr-2">
+                <select name="month" class="form-control">
+                <option value="">Sélectionner un mois</option>
+                <option value="1">Janvier</option>
+                <option value="2">Février</option>
+                <option value="3">Mars</option>
+                <option value="4">Avril</option>
+                <option value="5">Mai</option>
+                <option value="6">Juin</option>
+                <option value="7">Juillet</option>
+                <option value="8">Août</option>
+                <option value="9">Septembre</option>
+                <option value="10">Octobre</option>
+                <option value="11">Novembre</option>
+                <option value="12">Décembre</option>
+                </select>
+            </div>
+            <div class="form-group mr-2">
+                <input type="text" name="username" class="form-control" placeholder="Nom d'utilisateur">
+            </div>
+            <button type="submit" class="btn btn-secondary mr-2">Filtrer</button>
+            <a href="{{ path('app_admin_reservations_workspace') }}" class="btn btn-info">Réinitialiser</a>
+            <a href="{{ path('app_admin_reservations_workspace', {'today': 'true'}) }}" class="btn btn-info ml-2">Réservations d'aujourd'hui</a>
+        </form>
+    </div>
+
+    <section>
+        <h2>Réservations d'aujourd'hui</h2>
+        {% if todayReservations|length > 0 %}
+        <div class="table-responsive">
+        <table class="table table-striped sortTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Heure de début</th>
+                    <th>Heure de fin</th>
+                    <th>Validée</th>
+                    <th>Utilisateur</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in todayReservations %}
+                {% if reservation.workspace is not null %}
+                <tr>
+                    <td>{{ reservation.id }}</td>
+                    <td>{{ reservation.dateReservation|date('Y-m-d') }}</td>
+                    <td>{{ reservation.startHour|date('H:i') }}</td>
+                    <td>{{ reservation.endHour|date('H:i') }}</td>
+                    <td>{{ reservation.isIsValidated ? 'Oui' : 'Non' }}</td>
+                    <td>{{ reservation.user.username }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_reservations_show_workspace', {'id': reservation.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                        <a href="{{ path('app_admin_reservations_edit_workspace', {'id': reservation.id}) }}" class="btn btn-warning btn-sm">Éditer</a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">Aucune réservation pour aujourd'hui trouvée</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Aucune réservation pour aujourd'hui trouvée.</p>
+        {% endif %}
+    </div>
+    </section>
+
+    <section>
+    <h2>Réservations futures validées</h2>
+    {% if futureValidatedReservations|length > 0 %}
+    <div class="table-responsive">
+    <table class="table table-striped sortTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
+                <th>Validée</th>
+                <th>Utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in futureValidatedReservations %}
+            {% if reservation.workspace is not null %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.dateReservation|date('Y-m-d') }}</td>
+                <td>{{ reservation.startHour|date('H:i') }}</td>
+                <td>{{ reservation.endHour|date('H:i') }}</td>
+                <td>{{ reservation.isIsValidated ? 'Oui' : 'Non' }}</td>
+                <td>{{ reservation.user.username }}</td>
+                <td>
+                    <a href="{{ path('app_admin_reservations_show_workspace', {'id': reservation.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                    <a href="{{ path('app_admin_reservations_edit_workspace', {'id': reservation.id}) }}" class="btn btn-warning btn-sm">Éditer</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Aucune réservation future validée trouvée.</p>
+    {% endif %}
+</div>
+</section>
+
+
+
+    <section>
+    <h2>Réservations futures non validées</h2>
+    {% if futureNotValidatedReservations|length > 0 %}
+    <div class="table-responsive">
+    <table class="table table-striped sortTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
+                <th>Validée</th>
+                <th>Utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in futureNotValidatedReservations %}
+            {% if reservation.workspace is not null %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.dateReservation|date('Y-m-d') }}</td>
+                <td>{{ reservation.startHour|date('H:i') }}</td>
+                <td>{{ reservation.endHour|date('H:i') }}</td>
+                <td>{{ reservation.isIsValidated ? 'Oui' : 'Non' }}</td>
+                <td>{{ reservation.user.username }}</td>
+                <td>
+                    <a href="{{ path('app_admin_reservations_show_workspace', {'id': reservation.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                    <a href="{{ path('app_admin_reservations_edit_workspace', {'id': reservation.id}) }}" class="btn btn-warning btn-sm">Éditer</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Aucune réservation future validée trouvée.</p>
+    {% endif %}
+    </div>
+</section>
+
+
+<section>
+    <h2>Réservations passées</h2>
+    {% if pastReservations|length > 0 %}
+    <div class="table-responsive">
+    <table class="table table-striped sortTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
+                <th>Validée</th>
+                <th>Utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in pastReservations %}
+            {% if reservation.workspace is not null %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.dateReservation|date('Y-m-d') }}</td>
+                <td>{{ reservation.startHour|date('H:i') }}</td>
+                <td>{{ reservation.endHour|date('H:i') }}</td>
+                <td>{{ reservation.isIsValidated ? 'Oui' : 'Non' }}</td>
+                <td>{{ reservation.user.username }}</td>
+                <td>
+                    <a href="{{ path('app_admin_reservations_show_workspace', {'id': reservation.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                    <a href="{{ path('app_admin_reservations_edit_workspace', {'id': reservation.id}) }}" class="btn btn-warning btn-sm">Éditer</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% else %}
+            <tr>
+                <td colspan="7" class="text-center">Aucune réservation passée trouvée</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Aucune réservation future validée trouvée.</p>
+    {% endif %}
+    </div>
+</section>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Inclusion de DataTables.js (si utilisé) -->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<!-- Votre script d'initialisation de DataTables -->
+<script>
+    $(document).ready(function() {
+        $('.sortTable').DataTable();
+    });
+</script>
+{% endblock %}

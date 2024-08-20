@@ -1,0 +1,51 @@
+{% extends 'adminTemplatePage.html.twig' %}
+
+{% block title %}Modifier la machine{% endblock %}
+
+{% block main %}
+<div class="container mt-5 animate__animated animate__fadeInLeftBig">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h4>Modifier la machine</h4>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'class': 'form', 'enctype': 'multipart/form-data'}}) }}
+                        <div class="mb-3">
+                            {{ form_label(form.name_machine, 'Nom de la machine', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.name_machine, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.name_machine) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.number_machine, 'Numéro de la machine', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.number_machine, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.number_machine) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.description) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.machine_picture, 'Image de la machine', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(form.machine_picture, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.machine_picture) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.member_access, 'Accès membre', {'label_attr': {'class': 'form-check-label'}}) }}
+                            {{ form_widget(form.member_access, {'attr': {'class': 'form-check-input'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(form.is_booked, 'Réservée', {'label_attr': {'class': 'form-check-label'}}) }}
+                            {{ form_widget(form.is_booked, {'attr': {'class': 'form-check-input'}}) }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                        <a href="{{ path('app_admin_machines') }}" class="btn btn-secondary">Retour à la liste</a>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
