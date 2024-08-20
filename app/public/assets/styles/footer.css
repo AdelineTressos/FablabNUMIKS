@@ -1,0 +1,17 @@
+.bg-footer-custom {
+    background-image: url("../images/Image.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+} 
+
+.footer-small-text {
+    font-size: 1rem; 
+}
+
+.footer-link-text {
+    font-size: 1rem; 
+}
+
+.footer-mention-text {
+    font-size: 1rem; 
+}

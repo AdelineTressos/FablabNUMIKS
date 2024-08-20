@@ -1,0 +1,112 @@
+.container-fluid.img-nav {
+  background-image: url("../images/NavBar.svg");
+  background-size: cover;
+  background-position: center;
+  padding: 0 !important; /* Ajusté pour retirer le padding */
+}
+nav.navbar.navbar-expand-lg.bg-body-tertiary{
+  padding: 0 !important; /* Déjà à 0, ce qui est correct */
+}
+.navbar {
+  padding: 0 !important;
+}
+
+.container-fluid.img-nav {
+  padding: 0 !important;
+}
+
+
+.nav-link:hover {
+  color: #f28705 !important;
+}
+
+.nav-link::before {
+  color: #f28705 !important;
+}
+
+.img-nav img {
+  height: 7rem;
+}
+
+.background-color-nav {
+  margin-top: 0.5rem;
+  background-color: #bca3cedf !important;
+}
+
+.dropdown-item:hover {
+  background-color: transparent !important;
+  color: #6d3e91 !important;
+}
+
+.text-light {
+  font-size: 1rem;
+  font-weight: 500;
+  padding-left: 1rem;
+}
+
+.border-separer-text {
+  max-width: 100%;
+  transition: border-bottom 0.3s ease; /* Ajoutez cette ligne */
+}
+
+.border-separer-text:hover {
+  transition: border-bottom 0.3s ease;
+}
+
+.correction-padding-btn a {
+  margin-right: 3vw;
+}
+
+.navbar-toggler {
+  color: white;
+  border-color: white; /* Change la couleur de la bordure si nécessaire */
+}
+
+/* .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+} */
+
+.dropdown-menu {
+    display: none; /* Change ici */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+.navbar-brand img {
+  width: 7rem;
+  height: 6rem;
+}
+
+.dropdown-menu.background-color-nav .dropdown-item {
+    text-align: right !important;
+  }
+
+.text-left {
+    text-align: right !important;
+}
+
+
+
+.text-left a:hover {
+  color: #6d3e91 !important;
+}
+
+/* Exemple d'augmentation de la spécificité */
+.navbar.navbar-expand-lg.bg-body-tertiary {
+  padding-top: 0 !important;
+}
+.navbar-toggler {
+  margin: 2vh;
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu {}
+  
+.dropdown-menu {
+  left: -5rem; /* Ajustez cette valeur selon le besoin */
+}

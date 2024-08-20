@@ -1,0 +1,21 @@
+.color-btnn {
+    background-color: #6d3e91;
+    color: #fff;
+    font-weight: 700;
+}
+
+.color-btnn:hover {
+    background-color: rgb(82, 59, 104);
+    color: #fff;
+}
+
+.color-btnn-two {
+    background-color: rgb(249, 177, 42);
+    font-weight: 700;
+    color: #6d3e91;
+}
+
+.color-btnn-two:hover {
+    background-color: rgb(152, 103, 10);
+    color: #fff;
+}

@@ -1,0 +1,20 @@
+/* Utilisation des couleurs spécifiées */
+:root {
+    --orange-color: #f28705;
+    --purple-color: #6d3e91;
+}
+
+/* Style pour le lien "Create new" */
+.create-new-link {
+    background-color: var(--orange-color);
+    color: white;
+}
+
+.create-new-link:hover {
+    background-color: var(--purple-color);
+    color: #fff;
+}
+
+.btn-color-modifier {
+    background-color: var(--purple-color);
+}

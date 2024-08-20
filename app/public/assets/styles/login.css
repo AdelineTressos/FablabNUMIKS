@@ -1,0 +1,58 @@
+
+.card {
+    border: 1px solid #bca3cedf !important;
+}
+
+
+
+.card-body {
+    padding: 2rem !important;
+}
+
+.card-body h1, .mb-span {
+    color: #6d3e91 !important;
+}
+.navbar-toggler-icon{
+    margin: 0;
+}
+
+span:hover {
+    color: #36293f !important;
+}
+
+.btn-primary {
+    background-color: #f28705 !important;
+    border-color: #f28705 !important;
+}
+
+.btn-primary:hover {
+    background-color: #d97604 !important;
+    border-color: #c66503 !important;
+}
+
+.alert-danger {
+    color: #721c24 !important;
+    background-color: #f8d7da !important;
+    border-color: #f5c6cb !important;
+}
+
+.form-group label {
+    color: #6d3e91 !important;
+}
+
+a {
+    color: #6d3e91 !important;
+}
+
+a:hover {
+    color: #bca3cedf !important;
+}
+
+.text-center a {
+    color: #f28705 !important;
+    text-decoration: none !important;
+}
+.text-center a:hover {
+    color: #d97604 !important;
+}
+/* Ajoutez ce CSS dans votre fichier login.css ou un fichier CSS global */

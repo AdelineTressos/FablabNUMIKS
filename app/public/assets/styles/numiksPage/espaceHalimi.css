@@ -1,0 +1,54 @@
+.card {
+    border: none;
+}
+
+#titleGiseleHalimi {
+    color: #6D3E91;
+    margin-bottom: 1em;
+}
+
+#containerPresentation {
+    align-items: center;
+    text-align: center;
+}
+
+#cardPartenairePresentation {
+    text-align: start;
+    align-items: start;
+    margin-left: 2em;
+}
+
+
+#containerPartenaire,
+#cardPresentationPartenaire,
+#rowPartenairePresentation,
+#cardPresentationPartenaire {
+    text-align: start;
+    align-items: start;
+    width: 60rem;
+}
+
+#rowPartenaire {
+    text-align: center;
+    align-items: center;
+}
+
+#rowPartenaire img {
+    width: 5em;
+}
+
+#cardLogoPartenaire {
+    width: 5em;
+}
+
+@media screen and (max-width: 767px) {
+    #containerPresentation {
+        align-items: center;
+        text-align: center;
+    }
+
+    #rowPartenaire {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,41 @@
+.li {
+    border: none;
+}
+
+#titleSectionInfo {
+    color: #6D3E91;
+    margin-bottom: 1em;
+    margin-top: -1em;
+}
+
+#rowHorraires li {
+    border: none;
+}
+
+
+#cardHorraires,
+#cardContact {
+    text-align: center;
+    align-items: center;
+}
+
+.card-title,
+.card-text {
+    border: none !important;
+}
+
+#openContactForm {
+    margin-bottom: 2em;
+    background-color: #6D3E91;
+    border-color: #6D3E91;
+    color: #ffffff;
+    border-radius: 0.5em;
+}
+
+#openContactForm:hover {
+    color: #f28705;
+}
+
+
+
+@media screen and (max-width: 767px) {}

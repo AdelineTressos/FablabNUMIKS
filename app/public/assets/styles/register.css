@@ -1,0 +1,51 @@
+.custom-card-header {
+    background-color: #6d3e91 !important;
+    color: #fff !important;
+}
+.custom-card {
+    border-color: #bca3cedf !important;
+}
+.btn-custom {
+    background-color: #f28705 !important;
+    color: #fff !important;
+    border-color: #f28705 !important;
+}
+.btn-custom:hover {
+    background-color: #d97604;
+    border-color: #c66503;
+}
+
+
+body{
+    background-image: url("../images/page.svg");
+    background-position: center;
+
+}
+
+.background-image {
+    width: 100%;
+    background-image: url("../images/page.svg");
+    background-position: center;
+    background-size: cover; /* Ajustez selon les besoins */
+    transform: rotate(120deg);
+    transform-origin: center; /* Assurez que la rotation se fait autour du centre */
+    position: absolute;
+}
+
+
+
+
+/* Dans register.css */
+.form-error-message {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    padding: .5rem;
+    margin-top: .5rem;
+    border-radius: 5px;
+    font-size: .875rem;
+}
+
+.color-error-fab {
+    color: #f99521;
+    font-weight: 800;
+}

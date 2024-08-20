@@ -1,0 +1,16 @@
+/* Link button in home page */
+.a-home{
+    text-decoration: none;
+    color: #fff;
+}
+
+#background-logo-home{
+    background-color: #BCA3CE;
+    border-radius: 0.5em;
+    height: 8rem;
+}
+
+#homeBloc{
+    background-color: #fff;
+}
+

@@ -1,0 +1,7 @@
+.main-content {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    min-height: 100vh; /* Utilise la hauteur complète de la fenêtre du navigateur */
+    flex-direction: column; /* Organise les enfants en colonne */
+}

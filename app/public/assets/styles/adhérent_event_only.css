@@ -1,0 +1,149 @@
+.container {
+   
+    background-color: rgb(255, 255, 255);
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    border: 3px solid #6d3e91;
+    border-radius: 10px;
+    
+    
+}
+
+.container-fluid {
+    background-image: url('../images/page.svg');
+
+}
+
+.image {
+    /* background-color: rgb(247, 222, 0); */
+    width:380px;
+    height: 330px;
+    position: relative;
+    left: -330px;
+    top: 130px;
+    border-radius: 10px;
+    box-decoration-break: slice;
+    
+    
+    
+}
+
+.date {
+    /* background-color: rgb(55, 0, 255); */
+    width: 600px;
+    height: 230px;
+    position: relative;
+    left: -280px;
+    top: 230px;
+    border-radius: 10px;
+    padding: 2px;
+    background-color: #BCA3CE;
+}
+.date h3{
+    text-decoration-line:underline;
+    background-color: #BCA3CE;
+}
+.date p{
+    font-size: medium;
+    position: relative;
+    top: 30px;
+   
+    text-align: center;
+  
+}
+
+.horaire {
+    /* background-color: rgb(255, 0, 85); */
+    width: 180px;
+    height: 40px;
+    position: relative;
+    left: 480px;
+    bottom: 230px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #BCA3CE;
+}
+.horaire h5{
+    position: relative;
+    font-size: 18px;
+    top:10px;
+    background-color: #BCA3CE;
+}
+
+.description {
+    /* background-color: rgb(255, 30, 0); */
+    width: 180px;
+    height: 40px;
+    position: relative;
+    left: 100px;
+    bottom: 177px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #BCA3CE;
+       
+}
+
+.description h5{
+    position: relative;
+    top:8px;
+    font-weight: bold;
+    display: inline;
+}
+
+.condition {
+    /* background-color: rgb(14, 152, 216); */
+    width:230px;
+    height: 80px;
+    position: relative;
+    left: 90px;
+    bottom: 225px;
+    border-radius: 10px;
+    background-color: #BCA3CE;
+}
+.condition h2,h3 {
+    position: relative;
+    font-size: 18px;
+    top:9px;
+    text-align: center;
+}
+
+.page_titre {
+    position: relative;
+    top: 10px;
+    left: 240px;
+    height: 50px;
+    width: 600px;
+    color: blueviolet;
+    font-size: 40px;
+    font-weight: bolder;
+    /* background-color: aqua; */
+    text-align: center;
+    text-decoration: underline;
+}
+
+.btn-primary{
+
+    position: relative;
+    left : 900px;
+    top: 25px;
+    height: 45px;
+    width: 150px;
+    
+}
+
+.btn-custom {
+    background-color: #F28705;
+    color: #fff;
+    border: 2px solid #F28705;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-custom:hover {
+    background-color: #ff9933;
+    border-color: #ff9933;
+    color: #fff;
+}

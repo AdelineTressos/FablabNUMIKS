@@ -1,0 +1,56 @@
+.card {
+    border: none;
+}
+
+#titleSectionFablab {
+    color: #6D3E91;
+    margin-top: 0.5em;
+}
+
+#containerPresentation {
+    border: none;
+    align-items: center;
+    text-align: center;
+    /* margin-left: 5em; */
+}
+
+#rowMemberTeam {
+    text-align: center;
+    align-items: center;
+    margin-left: 2em;
+}
+
+
+@media screen and (max-width: 767px) {
+    #containerPresentation {
+        width: 80%;
+    }
+
+    #cardEmployer {
+        width: 50%;
+        text-align: center;
+        align-items: center;
+    }
+
+    #cardBodyEmployer .img {
+        width: 5em;
+    }
+
+    #rowMemberTeam #colEmployer .img {
+        width: 5em;
+        text-align: center;
+        align-items: center;
+    }
+
+    .card-img-top {
+        width: 5em;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #containerPresentation {
+        align-items: center;
+        text-align: center;
+    }
+}

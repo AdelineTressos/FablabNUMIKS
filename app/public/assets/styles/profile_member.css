@@ -1,0 +1,28 @@
+/* svg{
+    margin-right: 0.4rem;
+}
+
+.h1{
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.a-profile{
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn-custom {
+    background-color: #f28705 !important;
+    color: #fff !important;
+    border-color: #f28705 !important;
+} */
+
+/* .custom-card-header{
+    background-image: url("../images/NavBar.svg");
+} */
+
+#footer_profile{
+    height: 20px !important;
+    width: 100px;
+}

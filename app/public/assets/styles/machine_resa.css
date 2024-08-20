@@ -1,0 +1,137 @@
+.container {
+   
+    background-color: rgb(255, 255, 255);
+    height: auto;
+    border: 3px solid #6d3e91;
+    border-radius: 10px;
+}
+
+.swiper-container {
+    width: 100%; /* Largeur fixe */
+    /* height: 35em; */
+}
+
+.swiper-wrapper {
+    display: flex;
+    flex-wrap: nowrap; /* Empêche les éléments de passer à la ligne */
+}
+
+.container-fluid {
+    background-image: url('../images/page.svg');
+    height: auto;
+}
+
+.custom-card {
+    width: 14rem;
+    height: 5px; /* ou toute autre valeur de largeur souhaitée */
+}
+
+/* ------------ GOOGLE FONTS ------------ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* ------------ VARIABLES ------------ */
+:root{
+  /* FONT */
+  --font: 'Poppins', sans-serif;
+
+  /* COLORS */
+  --color: #6d3e91;
+  --bg-color: #f4f4f4;
+}
+
+
+.swiper{
+  width: 100%;
+}
+
+.swiper-wrapper{
+  width: 80%;
+  height: 25em;
+  display: flex;
+  align-items: center;
+}
+
+.card{
+  width: 20em;
+  height: 80%;
+  background-color: #fff;
+  border-radius: 2em;
+  box-shadow: 0 0 2em rgba(0, 0, 0, .2);
+  padding: 2em 1em;
+  display: flex;
+  align-items: center;
+}
+
+.swiper-slide:not(.swiper-slide-active){
+  filter: blur(1px);
+}
+
+.card__image{
+  width: 10em;
+  height: 8em;
+  border-radius: 50%;
+  border: 5px solid var(--color);
+  padding: 3px;
+  margin-bottom: 2em;
+}
+
+.card__image img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card__content{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card__title{
+  font-size: 1.5rem;
+  font-weight: 500;
+  position: relative;
+  top: .2em;
+}
+
+.card__name{
+  color: var(--color);
+}
+
+.card__text{
+  text-align: center;
+  font-size: 1.1rem;
+  margin: 1em 0;
+}
+
+.card__btn{
+  background-color: var(--color);
+  color: #fff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  padding: .5em;
+  border-radius: .5em;
+  margin-top: .5em;
+  cursor: pointer;
+}
+
+.text-center {
+  font-size: 100px; /* Taille de police personnalisée */
+  color: #6d3e91; /* Couleur du texte personnalisée */
+  text-decoration: underline;
+  position: relative;
+  top:20px;
+  /* Autres styles personnalisés */
+}
+
+.collapse{
+  width: 400px;
+}
+
+.custom-warning-btn {
+  color: #F28705;
+  border-color: #F28705;
+}

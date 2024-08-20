@@ -1,0 +1,18 @@
+.header-color {
+  background-color: #6d3e91;
+  color: #fff;
+}
+.btn-custom {
+  background-color: #f28705;
+  color: #fff;
+  margin-right: 5px;
+}
+.btn-custom:hover {
+  background-color: #8357a2df;
+  color: #fff;
+}
+.table-custom {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
