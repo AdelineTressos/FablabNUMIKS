@@ -1,0 +1,5 @@
+.container-fluid.img-nav {
+    background-image: url('../images/NavBar.png'); /* Ajustez le chemin selon l'organisation de vos dossiers */
+    background-size: cover; /* Couvre toute la zone disponible sans perdre les proportions */
+    background-position: center; /* Centre l'image de fond */
+}
